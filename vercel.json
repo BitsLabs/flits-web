@@ -8,7 +8,9 @@
     { "source": "/pages/experiments.html", "destination": "/index-ventures", "permanent": true },
     { "source": "/pages/:path*", "destination": "/:path*", "permanent": true },
     { "source": "/Flits.html", "destination": "/", "permanent": true },
-    { "source": "/Flits", "destination": "/", "permanent": true }
+    { "source": "/Flits", "destination": "/", "permanent": true },
+    { "source": "/imprint", "destination": "/legal", "permanent": true },
+    { "source": "/imprint.html", "destination": "/legal", "permanent": true }
   ],
   "headers": [
     {
