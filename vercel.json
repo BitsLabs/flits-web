@@ -2,6 +2,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "buildCommand": "node tools/prerender-static.mjs",
+  "outputDirectory": ".",
   "redirects": [
     { "source": "/pages/experiments", "destination": "/index-ventures", "permanent": true },
     { "source": "/pages/experiments.html", "destination": "/index-ventures", "permanent": true },
