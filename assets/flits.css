@@ -47,13 +47,13 @@ header {
   position: absolute;
   z-index: 10;
   top: 22px;
-  left: 28px;
-  right: 28px;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 12px;
-  padding-bottom: 14px;
+  padding: 0 28px 14px;
   background: var(--bg);
   background: linear-gradient(to bottom, var(--bg) 56%, color-mix(in srgb, var(--bg) 0%, transparent));
   backdrop-filter: blur(14px);
@@ -120,8 +120,10 @@ main {
   padding: 74px 0 62px;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
   transition: opacity .28s ease, transform .28s ease;
 }
+main::-webkit-scrollbar { display: none; }
 .hero {
   display: grid;
   justify-items: center;
@@ -224,8 +226,8 @@ main {
 footer {
   position: absolute;
   z-index: 10;
-  left: 28px;
-  right: 28px;
+  left: 0;
+  right: 0;
   bottom: 22px;
   display: flex;
   justify-content: space-between;
@@ -234,7 +236,7 @@ footer {
   color: var(--muted);
   letter-spacing: 0.06em;
   font-weight: 500;
-  padding-top: 18px;
+  padding: 18px 28px 0;
   background: var(--bg);
   background: linear-gradient(to top, var(--bg) 56%, color-mix(in srgb, var(--bg) 0%, transparent));
   backdrop-filter: blur(14px);
@@ -375,6 +377,7 @@ body.is-navigating main { pointer-events: none; }
   grid-template-columns: minmax(200px, 280px) 1fr;
   gap: 64px;
   width: min(980px, 94vw);
+  min-width: 0;
   max-height: none;
   overflow: visible;
 }
@@ -409,6 +412,7 @@ body.is-navigating main { pointer-events: none; }
   max-width: 32ch;
 }
 .page .body {
+  min-width: 0;
   padding-right: 8px;
 }
 .page .body::-webkit-scrollbar { width: 6px; }
@@ -537,17 +541,13 @@ body.is-navigating main { pointer-events: none; }
   .shell { padding: 16px 18px; }
   header {
     top: 16px;
-    left: 18px;
-    right: 18px;
-    padding-bottom: 12px;
+    padding: 0 18px 12px;
   }
   main { padding: 66px 0 76px; }
   footer {
-    left: 18px;
-    right: 18px;
     bottom: 16px;
     align-items: flex-end;
-    padding-top: 18px;
+    padding: 18px 18px 0;
   }
   .nav { gap: 14px; }
   .nav .links { gap: 14px; }
@@ -555,7 +555,13 @@ body.is-navigating main { pointer-events: none; }
   footer .meta { gap: 10px; }
   footer .tickers { gap: 10px; }
   .eyebrow::before, .eyebrow::after { width: 14px; }
-  .page { grid-template-columns: 1fr; gap: 20px; }
+  .hero { width: 100%; }
+  .page {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    width: 100%;
+  }
+  .page .body { padding-right: 0; }
   .page .side p { max-width: none; }
   .ledger .row { grid-template-columns: 32px 1fr auto; }
   .ledger .row .desc { display: none; }
