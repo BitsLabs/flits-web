@@ -100,6 +100,7 @@ main {
   place-items: center;
   position: relative;
   overflow: hidden;
+  transition: opacity .28s ease, transform .28s ease;
 }
 .hero {
   display: grid;
@@ -291,16 +292,17 @@ header, footer {
 .ledger .row:nth-child(7), .notes article:nth-child(7), .contact-grid .field:nth-child(7) { animation-delay: .66s; }
 .ledger .row:nth-child(8), .notes article:nth-child(8), .contact-grid .field:nth-child(8) { animation-delay: .72s; }
 
-/* Leaving transition, orchestrated by JS adding .is-leaving to <body> */
-body.is-leaving main    { transition: opacity .26s ease, transform .26s ease; opacity: 0; transform: translateY(-4px); }
-body.is-leaving header,
-body.is-leaving footer  { transition: opacity .26s ease; opacity: .35; }
+/* Leaving transition, orchestrated by JS adding .is-leaving to <body>.
+   Only the central content moves; the fixed shell stays visually anchored. */
+body.is-leaving main { opacity: 0; transform: translateY(-4px); }
+body.is-navigating main { pointer-events: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .hero > *, .page .side > *, .page .body,
   .ledger .row, .notes article, .contact-grid .field,
   header, footer { animation: none !important; }
-  body.is-leaving main { transition: none; opacity: 1; transform: none; }
+  main { transition: none; }
+  body.is-leaving main { opacity: 1; transform: none; }
 }
 
 /* ========== Back link (above subpage kicker) ========== */

@@ -3,6 +3,8 @@
    advance angles smoothly. Fits the paper/mono aesthetic: thin dashed rules,
    tiny filled discs, slow speeds, no color. */
 (function () {
+  function initOrrery() {
+  if (window.FlitsOrreryDestroy) window.FlitsOrreryDestroy();
   const mount = document.getElementById('ascii');
   if (!mount) return;
 
@@ -347,10 +349,23 @@
     tick(dt);
     raf = requestAnimationFrame(loop);
   }
-  document.addEventListener('visibilitychange', () => {
+  function onVisibilityChange() {
     if (document.hidden) { cancelAnimationFrame(raf); raf = null; last = 0; }
     else if (!raf) { raf = requestAnimationFrame(loop); }
-  });
+  }
+
+  document.addEventListener('visibilitychange', onVisibilityChange);
+
+  window.FlitsOrreryDestroy = function () {
+    if (raf) cancelAnimationFrame(raf);
+    raf = null;
+    document.removeEventListener('visibilitychange', onVisibilityChange);
+    window.FlitsOrreryDestroy = null;
+  };
 
   raf = requestAnimationFrame(loop);
+  }
+
+  window.FlitsOrreryInit = initOrrery;
+  initOrrery();
 })();
