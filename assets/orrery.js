@@ -24,10 +24,28 @@
   svg.setAttribute('role', 'img');
   wrap.appendChild(svg);
 
-  const root = getComputedStyle(document.documentElement);
-  const fg    = (root.getPropertyValue('--fg')    || '#1a1916').trim();
-  const muted = (root.getPropertyValue('--muted') || '#7a756a').trim();
-  const rule  = (root.getPropertyValue('--rule')  || '#d9d4c7').trim();
+  let fg = '#1a1916';
+  let muted = '#7a756a';
+  let rule = '#d9d4c7';
+
+  function readTheme() {
+    const root = getComputedStyle(document.documentElement);
+    fg = (root.getPropertyValue('--fg') || fg).trim();
+    muted = (root.getPropertyValue('--muted') || muted).trim();
+    rule = (root.getPropertyValue('--rule') || rule).trim();
+  }
+
+  function applyTheme() {
+    readTheme();
+    svg.querySelectorAll('[data-fill="fg"]').forEach((el) => el.setAttribute('fill', fg));
+    svg.querySelectorAll('[data-fill="muted"]').forEach((el) => el.setAttribute('fill', muted));
+    svg.querySelectorAll('[data-stroke="fg"]').forEach((el) => el.setAttribute('stroke', fg));
+    svg.querySelectorAll('[data-stroke="muted"]').forEach((el) => el.setAttribute('stroke', muted));
+    svg.querySelectorAll('[data-stroke="rule"]').forEach((el) => el.setAttribute('stroke', rule));
+    svg.querySelectorAll('[data-stop-color="fg"]').forEach((el) => el.setAttribute('stop-color', fg));
+  }
+
+  readTheme();
 
   // ---- Defs ----
   const defs = document.createElementNS(SVG_NS, 'defs');
@@ -45,6 +63,7 @@
     const s = document.createElementNS(SVG_NS, 'stop');
     s.setAttribute('offset', off);
     s.setAttribute('stop-color', fg);
+    s.setAttribute('data-stop-color', 'fg');
     s.setAttribute('stop-opacity', String(op));
     grad.appendChild(s);
   });
@@ -57,8 +76,10 @@
   cometGrad.setAttribute('x2', '1'); cometGrad.setAttribute('y2', '0');
   const cg1 = document.createElementNS(SVG_NS, 'stop');
   cg1.setAttribute('offset', '0%');   cg1.setAttribute('stop-color', fg); cg1.setAttribute('stop-opacity', '0');
+  cg1.setAttribute('data-stop-color', 'fg');
   const cg2 = document.createElementNS(SVG_NS, 'stop');
   cg2.setAttribute('offset', '100%'); cg2.setAttribute('stop-color', fg); cg2.setAttribute('stop-opacity', '0.85');
+  cg2.setAttribute('data-stop-color', 'fg');
   cometGrad.append(cg1, cg2);
   defs.appendChild(cometGrad);
 
@@ -111,6 +132,7 @@
     dot.setAttribute('cy', cy.toFixed(1));
     dot.setAttribute('r',  bright > 0.92 ? 0.95 : (bright > 0.7 ? 0.65 : 0.45));
     dot.setAttribute('fill', muted);
+    dot.setAttribute('data-fill', 'muted');
     const base = 0.2 + bright * 0.5;
     dot.setAttribute('opacity', base.toFixed(2));
     starLayer.appendChild(dot);
@@ -134,6 +156,7 @@
     ring.setAttribute('r', o.r);
     ring.setAttribute('fill', 'none');
     ring.setAttribute('stroke', rule);
+    ring.setAttribute('data-stroke', 'rule');
     ring.setAttribute('stroke-width', '0.6');
     ring.setAttribute('stroke-dasharray', o.dash);
     ring.setAttribute('opacity', '0.9');
@@ -149,6 +172,7 @@
         t.setAttribute('x2', (Math.cos(a) * (o.r + 1.5)).toFixed(2));
         t.setAttribute('y2', (Math.sin(a) * (o.r + 1.5)).toFixed(2));
         t.setAttribute('stroke', rule);
+        t.setAttribute('data-stroke', 'rule');
         t.setAttribute('stroke-width', '0.4');
         t.setAttribute('opacity', '0.6');
         scene.appendChild(t);
@@ -159,6 +183,7 @@
     const trail = document.createElementNS(SVG_NS, 'path');
     trail.setAttribute('fill', 'none');
     trail.setAttribute('stroke', muted);
+    trail.setAttribute('data-stroke', 'muted');
     trail.setAttribute('stroke-width', '0.75');
     trail.setAttribute('stroke-linecap', 'round');
     trail.setAttribute('opacity', '0.5');
@@ -168,6 +193,7 @@
     const body = document.createElementNS(SVG_NS, 'circle');
     body.setAttribute('r', o.body);
     body.setAttribute('fill', fg);
+    body.setAttribute('data-fill', 'fg');
     scene.appendChild(body);
 
     // Halo ring on one chosen planet (the "III" — a gas giant feel)
@@ -178,6 +204,7 @@
       halo.setAttribute('ry', (o.body + 1.2).toFixed(2));
       halo.setAttribute('fill', 'none');
       halo.setAttribute('stroke', fg);
+      halo.setAttribute('data-stroke', 'fg');
       halo.setAttribute('stroke-width', '0.6');
       halo.setAttribute('opacity', '0.75');
       scene.appendChild(halo);
@@ -189,6 +216,7 @@
       moon = document.createElementNS(SVG_NS, 'circle');
       moon.setAttribute('r', 0.95);
       moon.setAttribute('fill', fg);
+      moon.setAttribute('data-fill', 'fg');
       moon.setAttribute('opacity', '0.8');
       scene.appendChild(moon);
     }
@@ -211,6 +239,7 @@
   const cometHead = document.createElementNS(SVG_NS, 'circle');
   cometHead.setAttribute('r', 1.6);
   cometHead.setAttribute('fill', fg);
+  cometHead.setAttribute('data-fill', 'fg');
   scene.appendChild(cometHead);
   let cometAngle = Math.PI * 0.8;
 
@@ -219,6 +248,7 @@
   sunOuter.setAttribute('r', '10');
   sunOuter.setAttribute('fill', 'none');
   sunOuter.setAttribute('stroke', fg);
+  sunOuter.setAttribute('data-stroke', 'fg');
   sunOuter.setAttribute('stroke-width', '0.7');
   sunOuter.setAttribute('opacity', '0.8');
   scene.appendChild(sunOuter);
@@ -232,6 +262,7 @@
   const sun = document.createElementNS(SVG_NS, 'circle');
   sun.setAttribute('r', '4.2');
   sun.setAttribute('fill', fg);
+  sun.setAttribute('data-fill', 'fg');
   scene.appendChild(sun);
 
   // Cardinal tick marks around sun
@@ -244,6 +275,7 @@
     tick.setAttribute('x2', (Math.cos(a) * r1).toFixed(2));
     tick.setAttribute('y2', (Math.sin(a) * r1).toFixed(2));
     tick.setAttribute('stroke', muted);
+    tick.setAttribute('data-stroke', 'muted');
     tick.setAttribute('stroke-width', '0.6');
     tick.setAttribute('opacity', k % 2 === 0 ? '0.85' : '0.5');
     scene.appendChild(tick);
@@ -253,6 +285,7 @@
   const meridian = document.createElementNS(SVG_NS, 'path');
   meridian.setAttribute('fill', 'none');
   meridian.setAttribute('stroke', muted);
+  meridian.setAttribute('data-stroke', 'muted');
   meridian.setAttribute('stroke-width', '0.5');
   meridian.setAttribute('stroke-dasharray', '2 5');
   meridian.setAttribute('opacity', '0.32');
@@ -354,15 +387,36 @@
     else if (!raf) { raf = requestAnimationFrame(loop); }
   }
 
+  const colorSchemeQuery = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+  function onColorSchemeChange() {
+    applyTheme();
+  }
+
+  const themeObserver = new MutationObserver(applyTheme);
+
   document.addEventListener('visibilitychange', onVisibilityChange);
+  if (colorSchemeQuery) {
+    if (colorSchemeQuery.addEventListener) colorSchemeQuery.addEventListener('change', onColorSchemeChange);
+    else if (colorSchemeQuery.addListener) colorSchemeQuery.addListener(onColorSchemeChange);
+  }
+  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'style', 'data-theme', 'data-appearance'] });
+  if (document.body) {
+    themeObserver.observe(document.body, { attributes: true, attributeFilter: ['class', 'style', 'data-theme', 'data-appearance'] });
+  }
 
   window.FlitsOrreryDestroy = function () {
     if (raf) cancelAnimationFrame(raf);
     raf = null;
     document.removeEventListener('visibilitychange', onVisibilityChange);
+    if (colorSchemeQuery) {
+      if (colorSchemeQuery.removeEventListener) colorSchemeQuery.removeEventListener('change', onColorSchemeChange);
+      else if (colorSchemeQuery.removeListener) colorSchemeQuery.removeListener(onColorSchemeChange);
+    }
+    themeObserver.disconnect();
     window.FlitsOrreryDestroy = null;
   };
 
+  applyTheme();
   raf = requestAnimationFrame(loop);
   }
 
