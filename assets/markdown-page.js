@@ -9,8 +9,18 @@
     katexCss: 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css'
   };
 
+  var siteRoot = new URL('../', document.currentScript ? document.currentScript.src : window.location.href);
   var scriptPromises = {};
   var parserPromise;
+  var textCache = new Map();
+  var jsonCache = new Map();
+  var contentPages = [
+    'content/index-ventures.md',
+    'content/contact.md',
+    'content/ventures.md',
+    'content/experiments.md',
+    'content/notes.md'
+  ];
 
   function loadScript(src) {
     if (scriptPromises[src]) return scriptPromises[src];
@@ -67,6 +77,38 @@
 
   function resolveUrl(path, base) {
     return new URL(path, base || window.location.href).href;
+  }
+
+  function fetchText(url) {
+    var key = resolveUrl(url);
+    if (!textCache.has(key)) {
+      textCache.set(key, fetch(key, { credentials: 'same-origin' })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Fetch failed: ' + res.status);
+          return res.text();
+        })
+        .catch(function (error) {
+          textCache.delete(key);
+          throw error;
+        }));
+    }
+    return textCache.get(key);
+  }
+
+  function fetchJson(url) {
+    var key = resolveUrl(url);
+    if (!jsonCache.has(key)) {
+      jsonCache.set(key, fetch(key, { credentials: 'same-origin' })
+        .then(function (res) {
+          if (!res.ok) throw new Error('JSON fetch failed: ' + res.status);
+          return res.json();
+        })
+        .catch(function (error) {
+          jsonCache.delete(key);
+          throw error;
+        }));
+    }
+    return jsonCache.get(key);
   }
 
   function localMarkdown(source) {
@@ -228,19 +270,11 @@
   function renderArticleIndex(section, body, parsed, mdUrl) {
     var manifestUrl = resolveUrl(parsed.data.articles, mdUrl);
 
-    return fetch(manifestUrl, { credentials: 'same-origin' })
-      .then(function (res) {
-        if (!res.ok) throw new Error('Article manifest fetch failed: ' + res.status);
-        return res.json();
-      })
+    return fetchJson(manifestUrl)
       .then(function (paths) {
         return Promise.all(paths.map(function (path) {
           var url = resolveUrl(path, manifestUrl);
-          return fetch(url, { credentials: 'same-origin' })
-            .then(function (res) {
-              if (!res.ok) throw new Error('Article fetch failed: ' + res.status);
-              return res.text();
-            })
+          return fetchText(url)
             .then(function (source) {
               var article = parseFrontMatter(source);
               return {
@@ -273,13 +307,8 @@
     if (!body) return;
 
     body.setAttribute('aria-busy', 'true');
-    body.innerHTML = '<p class="loading">Loading...</p>';
 
-    fetch(url, { credentials: 'same-origin' })
-      .then(function (res) {
-        if (!res.ok) throw new Error('Article fetch failed: ' + res.status);
-        return res.text();
-      })
+    fetchText(url)
       .then(function (source) {
         var parsed = parseFrontMatter(source);
         if (parsed.data.title) document.title = parsed.data.title + ' - Flits';
@@ -323,33 +352,28 @@
       if (headers.join('|') === 'channel|details') {
         table.classList.add('md-contact');
       }
-    });
+      });
   }
 
-  function loadPage(section) {
-    if (section.dataset.loaded === section.dataset.md) return;
+  function renderPageSection(section, baseUrl, updateTitle) {
+    if (section.dataset.loaded === section.dataset.md) return Promise.resolve();
     section.dataset.loaded = section.dataset.md;
 
     var body = section.querySelector('.markdown-body');
-    if (!body) return;
+    if (!body) return Promise.resolve();
 
     body.setAttribute('aria-busy', 'true');
-    body.innerHTML = '<p class="loading">Loading...</p>';
 
-    var mdUrl = resolveUrl(section.dataset.md);
+    var mdUrl = resolveUrl(section.dataset.md, baseUrl);
 
-    fetch(mdUrl, { credentials: 'same-origin' })
-      .then(function (res) {
-        if (!res.ok) throw new Error('Markdown fetch failed: ' + res.status);
-        return res.text();
-      })
+    return fetchText(mdUrl)
       .then(function (source) {
         var parsed = parseFrontMatter(source);
         setText('.kicker', parsed.data.kicker, section);
         setHtml('h1', parsed.data.heading, section);
         setText('.side .intro', parsed.data.intro, section);
         setText('.side .aside', parsed.data.aside, section);
-        if (parsed.data.title) document.title = parsed.data.title + ' - Flits';
+        if (updateTitle && parsed.data.title) document.title = parsed.data.title + ' - Flits';
 
         if (parsed.data.articles) {
           return renderArticleIndex(section, body, parsed, mdUrl).then(function () {
@@ -372,8 +396,43 @@
       });
   }
 
+  function loadPage(section) {
+    return renderPageSection(section, window.location.href, true);
+  }
+
+  function preloadPageContent(path) {
+    var mdUrl = resolveUrl(path, siteRoot);
+    return fetchText(mdUrl)
+      .then(function (source) {
+        var parsed = parseFrontMatter(source);
+        if (!parsed.data.articles) return null;
+        var manifestUrl = resolveUrl(parsed.data.articles, mdUrl);
+        return fetchJson(manifestUrl).then(function (articles) {
+          return Promise.all(articles.map(function (articlePath) {
+            return fetchText(resolveUrl(articlePath, manifestUrl));
+          }));
+        });
+      })
+      .catch(function () {});
+  }
+
   window.FlitsMarkdownInit = function () {
-    document.querySelectorAll('[data-md]').forEach(loadPage);
+    return Promise.all(Array.from(document.querySelectorAll('[data-md]')).map(loadPage));
+  };
+
+  window.FlitsMarkdownHydrateMain = function (html, pageUrl) {
+    var doc = new DOMParser().parseFromString('<main>' + html + '</main>', 'text/html');
+    var main = doc.querySelector('main');
+    return Promise.all(Array.from(main.querySelectorAll('[data-md]')).map(function (section) {
+      return renderPageSection(section, pageUrl, false);
+    })).then(function () {
+      return main.innerHTML;
+    });
+  };
+
+  window.FlitsMarkdownPreloadAll = function () {
+    getParser().catch(function () {});
+    return Promise.all(contentPages.map(preloadPageContent));
   };
 
   document.addEventListener('click', function (event) {
@@ -397,8 +456,12 @@
   });
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', window.FlitsMarkdownInit);
+    document.addEventListener('DOMContentLoaded', function () {
+      window.FlitsMarkdownPreloadAll();
+      window.FlitsMarkdownInit();
+    });
   } else {
+    window.FlitsMarkdownPreloadAll();
     window.FlitsMarkdownInit();
   }
 })();

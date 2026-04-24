@@ -36,14 +36,20 @@
     return new URL(a.href, window.location.href);
   }
 
-  function parsePage(html) {
+  function parsePage(html, url) {
     var doc = new DOMParser().parseFromString(html, 'text/html');
     var main = doc.querySelector('main');
     if (!main) throw new Error('No <main> found in fetched page.');
-    return {
-      title: doc.querySelector('title') ? doc.querySelector('title').textContent : document.title,
-      main: main.innerHTML
-    };
+    var title = doc.querySelector('title') ? doc.querySelector('title').textContent : document.title;
+    var mainHtml = main.innerHTML;
+
+    if (window.FlitsMarkdownHydrateMain) {
+      return window.FlitsMarkdownHydrateMain(mainHtml, url.href).then(function (hydratedMain) {
+        return { title: title, main: hydratedMain };
+      });
+    }
+
+    return Promise.resolve({ title: title, main: mainHtml });
   }
 
   function fetchPage(url) {
@@ -54,13 +60,27 @@
           if (!res.ok) throw new Error('Page fetch failed: ' + res.status);
           return res.text();
         })
-        .then(parsePage)
+        .then(function (html) {
+          return parsePage(html, url);
+        })
         .catch(function (error) {
           cache.delete(key);
           throw error;
         }));
     }
     return cache.get(key);
+  }
+
+  function preloadInternalLinks() {
+    window.setTimeout(function () {
+      document.querySelectorAll('a[href]').forEach(function (a) {
+        if (!isInternal(a)) return;
+        try {
+          var url = linkUrl(a);
+          if (!samePage(url)) fetchPage(url).catch(function () {});
+        } catch (e) {}
+      });
+    }, 0);
   }
 
   function settleMain() {
@@ -107,6 +127,7 @@
         }
 
         updateActiveLinks();
+        preloadInternalLinks();
         window.requestAnimationFrame(settleMain);
       }, LEAVE_MS);
     }).catch(function () {
@@ -141,6 +162,12 @@
     fetchPage(linkUrl(a)).catch(function () {});
   });
 
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', preloadInternalLinks);
+  } else {
+    preloadInternalLinks();
+  }
+
   window.addEventListener('popstate', function () {
     swapTo(new URL(window.location.href), { replace: true });
   });
@@ -149,5 +176,6 @@
   window.addEventListener('pageshow', function () {
     document.body.classList.remove('is-leaving', 'is-navigating');
     navigating = false;
+    preloadInternalLinks();
   });
 })();
