@@ -12,7 +12,7 @@ aside: Based between Munich and the wider European company-building circuit.
 
 ## Manuel Asbeck
 
-Manuel Asbeck founded Flits in 2023 and serves as its Managing Director and sole shareholder. He is twenty years old, based between Lower Bavaria and Munich, and studies Information Systems at the Technical University of Munich.
+Manuel Asbeck founded Flits in 2023 and serves as its Managing Director and sole shareholder. He is twenty years old, based between the Munich Area and London, and studies Information Systems at the Technical University of Munich.
 
 Flits grew from a simple conviction: that the best digital companies are built with patience, and that the work of a young founder deserves a permanent home rather than a graveyard of abandoned projects. Manuel started building software at twelve years old. By the time he founded Flits, he had already shipped several consumer apps, learned what it takes to grow them, and developed a clear view of what separates ventures worth keeping from ones worth letting go.
 
