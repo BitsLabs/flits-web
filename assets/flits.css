@@ -426,6 +426,8 @@ body.is-navigating main { pointer-events: none; }
 .article-page {
   width: min(620px, 94vw);
   min-width: 0;
+  align-self: start;
+  padding-top: 10px;
 }
 .article-page .body {
   padding-right: 0;
