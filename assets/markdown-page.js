@@ -19,7 +19,9 @@
     'content/contact.md',
     'content/ventures.md',
     'content/experiments.md',
-    'content/notes.md'
+    'content/notes.md',
+    'content/thesis.md',
+    'content/legal.md'
   ];
 
   function loadScript(src) {
