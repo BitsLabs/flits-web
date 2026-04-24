@@ -717,7 +717,9 @@ body.is-navigating main { pointer-events: none; }
 }
 .article { max-width: 620px; }
 .article .article-back {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 18px;
   color: var(--muted);
   font-size: 10px;
@@ -726,12 +728,29 @@ body.is-navigating main { pointer-events: none; }
   font-weight: 500;
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: color .2s ease, border-color .2s ease;
+  transition: color .2s ease, border-color .2s ease, gap .2s ease;
+  line-height: 1;
+}
+.article .article-back .arrow {
+  display: inline-block;
+  width: 20px;
+  height: 8px;
+  flex: 0 0 auto;
+  color: var(--rule);
+  transition: width .2s ease, color .2s ease;
+}
+.article .article-back .arrow svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
 .article .article-back:hover {
   color: var(--fg);
   border-bottom-color: var(--rule);
+  gap: 14px;
 }
+.article .article-back:hover .arrow { width: 26px; color: var(--fg); }
 .article .date {
   color: var(--muted);
   font-size: 10px;

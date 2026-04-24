@@ -298,6 +298,10 @@
     });
   }
 
+  function backArrow() {
+    return '<span class="arrow"><svg viewBox="0 0 20 8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="square" shape-rendering="geometricPrecision"><path d="M1 4 L20 4 M1 4 L5 0.5 M1 4 L5 7.5"/></svg></span>';
+  }
+
   function renderArticleIndex(section, body, parsed, mdUrl) {
     var manifestUrl = resolveUrl(parsed.data.articles, mdUrl);
 
@@ -353,7 +357,7 @@
         if (updateTitle !== false && parsed.data.title) document.title = parsed.data.title + ' - Flits';
         return getParser().then(function (render) {
           body.innerHTML = '<article class="article">' +
-            '<a class="article-back" href="' + escapeHtml(articleBackHref()) + '" data-article-back>' + (isolated ? 'Back' : 'Notes') + '</a>' +
+            '<a class="article-back" href="' + escapeHtml(articleBackHref()) + '" data-article-back>' + backArrow() + (isolated ? 'Back' : 'Notes') + '</a>' +
             '<div class="date">' + escapeHtml(parsed.data.date || '') + '</div>' +
             '<h2>' + escapeHtml(parsed.data.title || '') + '</h2>' +
             render(parsed.body) +
