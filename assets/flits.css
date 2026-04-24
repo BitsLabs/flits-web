@@ -51,7 +51,7 @@ header {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 2px;
   text-decoration: none;
   color: var(--fg);
   letter-spacing: 0.04em;
