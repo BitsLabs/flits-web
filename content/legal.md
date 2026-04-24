@@ -13,7 +13,8 @@ Forellenweg 8a
 94428 Eichendorf  
 Germany
 
-VAT ID: DE455616704
+VAT ID: DE455616704  
+LEI: 98450046873FFWE6C829
 
 A German Limited Liability Company, registered in the trade register B of Landshut, BY, Germany with the ID: HRB 14836.
 
