@@ -15,36 +15,59 @@
     var url;
     try { url = new URL(a.href, window.location.href); } catch (e) { return false; }
     if (url.origin !== window.location.origin) return false;
-    // only .html (or no extension) — skip mailto, #hash on same page, assets
+    // Only pages: .html, extensionless clean URLs, or /.
     if (url.pathname === window.location.pathname && url.hash) return false;
     if (a.protocol === 'mailto:' || a.protocol === 'tel:') return false;
-    if (!/\.html?$/i.test(url.pathname) && url.pathname !== '/') return false;
+    if (!/\.html?$/i.test(url.pathname) && url.pathname !== '/' && /\.[^/]+$/.test(url.pathname)) return false;
     return true;
   }
 
+  function canonicalUrl(url) {
+    var clean = new URL(url.href);
+    clean.hash = '';
+    if (/\/Flits(?:\.html)?$/i.test(clean.pathname)) {
+      clean.pathname = '/';
+    } else if (/\.html?$/i.test(clean.pathname)) {
+      clean.pathname = clean.pathname.replace(/\.html?$/i, '');
+    }
+    return clean;
+  }
+
+  function requestUrl(url) {
+    var request = new URL(url.href);
+    if (request.pathname === '/') {
+      request.pathname = '/index.html';
+    } else if (!/\.html?$/i.test(request.pathname) && !/\.[^/]+$/.test(request.pathname)) {
+      request.pathname += '.html';
+    }
+    return request;
+  }
+
   function samePage(url) {
-    return url.pathname === window.location.pathname &&
-      url.search === window.location.search &&
+    var current = canonicalUrl(new URL(window.location.href));
+    var next = canonicalUrl(url);
+    return next.pathname === current.pathname &&
+      next.search === current.search &&
       url.hash === window.location.hash;
   }
 
   function isNotesArticle(url) {
-    return /\/pages\/notes\/[^/]+\.html$/i.test(url.pathname);
+    return /\/pages\/notes\/[^/.]+(?:\.html)?$/i.test(url.pathname);
   }
 
   function rememberReturnTarget(url) {
     if (!isNotesArticle(url)) return;
     try {
-      window.sessionStorage.setItem('flits:return:' + url.pathname, window.location.href);
+      window.sessionStorage.setItem('flits:return:' + canonicalUrl(url).pathname, canonicalUrl(new URL(window.location.href)).href);
     } catch (e) {}
   }
 
   function linkUrl(a) {
     var raw = a.getAttribute('href') || '';
     if (/^(pages\/|\.\/pages\/|Flits\.html$|\.\/Flits\.html$)/.test(raw)) {
-      return new URL(raw.replace(/^\.\//, ''), siteRoot);
+      return canonicalUrl(new URL(raw.replace(/^\.\//, ''), siteRoot));
     }
-    return new URL(a.href, window.location.href);
+    return canonicalUrl(new URL(a.href, window.location.href));
   }
 
   function parsePage(html, url) {
@@ -64,9 +87,10 @@
   }
 
   function fetchPage(url) {
-    var key = url.href;
+    var key = canonicalUrl(url).href;
     if (!cache.has(key)) {
-      cache.set(key, fetch(key, { credentials: 'same-origin' })
+      var fetchUrl = requestUrl(url);
+      cache.set(key, fetch(fetchUrl.href, { credentials: 'same-origin' })
         .then(function (res) {
           if (!res.ok) throw new Error('Page fetch failed: ' + res.status);
           return res.text();
@@ -104,7 +128,7 @@
   function updateActiveLinks() {
     document.querySelectorAll('.nav a').forEach(function (a) {
       try {
-        a.classList.toggle('active', linkUrl(a).pathname === window.location.pathname);
+        a.classList.toggle('active', linkUrl(a).pathname === canonicalUrl(new URL(window.location.href)).pathname);
       } catch (e) {
         a.classList.remove('active');
       }
@@ -132,9 +156,9 @@
         document.title = page.title;
 
         if (options.replace) {
-          window.history.replaceState({ flits: true }, page.title, url.href);
+          window.history.replaceState({ flits: true }, page.title, canonicalUrl(url).href);
         } else {
-          window.history.pushState({ flits: true }, page.title, url.href);
+          window.history.pushState({ flits: true }, page.title, canonicalUrl(url).href);
         }
 
         updateActiveLinks();

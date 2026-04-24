@@ -1,3 +1,8 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/Flits.html" }]
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/Flits.html", "destination": "/", "permanent": true },
+    { "source": "/Flits", "destination": "/", "permanent": true }
+  ]
 }

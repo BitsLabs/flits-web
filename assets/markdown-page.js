@@ -268,23 +268,25 @@
   }
 
   function articlePageHref(path) {
-    return 'notes/' + articleSlug(path) + '.html';
+    return '/pages/notes/' + articleSlug(path);
   }
 
   function fallbackBackHref() {
-    return window.location.pathname.indexOf('/pages/notes/') !== -1 ? '../notes.html' : 'notes.html';
+    return '/pages/notes';
   }
 
   function articleBackHref() {
     var fallback = fallbackBackHref();
     try {
-      var key = 'flits:return:' + window.location.pathname;
+      var key = 'flits:return:' + window.location.pathname.replace(/\.html?$/i, '');
       var stored = window.sessionStorage && window.sessionStorage.getItem(key);
       if (stored) return stored;
 
       if (document.referrer) {
         var referrer = new URL(document.referrer);
         if (referrer.origin === window.location.origin && referrer.href !== window.location.href) {
+          if (/\/Flits(?:\.html)?$/i.test(referrer.pathname)) referrer.pathname = '/';
+          referrer.pathname = referrer.pathname.replace(/\.html?$/i, '');
           return referrer.href;
         }
       }
