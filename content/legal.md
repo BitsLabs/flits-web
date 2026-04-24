@@ -27,7 +27,7 @@ A UK Limited Company, registered in England and Wales at Companies House with th
 
 Represented by the Managing Director: Manuel J. Asbeck
 
-Email: [hello@trout.so](mailto:hello@trout.so)
+Email: [contact@flits.cc](mailto:contact@flits.cc)
 
 ## Responsible for content according to § 55 Abs. 2 RStV
 
