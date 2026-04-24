@@ -477,7 +477,7 @@ body.is-navigating main { pointer-events: none; }
   text-transform: uppercase;
   font-weight: 500;
 }
-.ledger .row.active .status { color: var(--fg); }
+.ledger .row.active .status { color: var(--muted); }
 
 /* Contact block */
 .contact-grid {
@@ -686,7 +686,7 @@ body.is-navigating main { pointer-events: none; }
   font-weight: 500;
   padding-right: 0;
 }
-.markdown-body .md-ledger tr.active td:nth-child(4) { color: var(--fg); }
+.markdown-body .md-ledger tr.active td:nth-child(4) { color: var(--muted); }
 .markdown-body .md-notes td:first-child {
   width: 90px;
   color: var(--muted);
