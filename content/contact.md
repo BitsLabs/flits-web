@@ -8,8 +8,8 @@ aside: For legal matters, please address the registered office.
 
 | Channel | Details |
 |---|---|
-| General | [hello@flits.co](mailto:hello@flits.co)<br><span class="meta">For introductions, collaborations, and casual questions.</span> |
-| Ventures | [ventures@flits.co](mailto:ventures@flits.co)<br><span class="meta">Pitches, memos, and a line or two about what you're building.</span> |
-| Press | [press@flits.co](mailto:press@flits.co)<br><span class="meta">Interviews, quotes, and background.</span> |
-| Office | Prinsengracht 142-B<br>1015 EA Amsterdam, NL<br><span class="meta">Visits by appointment, Tuesdays and Thursdays.</span> |
-| Elsewhere | [@flits](#) · [are.na/flits](#) · [github/flits](#)<br><span class="meta">Occasionally updated; slower than email.</span> |
+| Email | [contact@flits.cc](mailto:contact@flits.cc)<br><span class="meta">For introductions, collaborations, pitches, and general questions.</span> |
+| Meeting | [Book a 30-minute call](https://cal.com/manuelasbeck/30min)<br><span class="meta">For scheduled conversations with Manuel J. Asbeck.</span> |
+| Phone | [+49 1515 3616465](tel:+4915153616465)<br><span class="meta">Available for direct enquiries.</span> |
+| German office | Trout UG (haftungsbeschränkt)<br>Forellenweg 8a<br>94428 Eichendorf, Germany |
+| UK office | Flits Ltd<br>71-75 Shelton St<br>London, WC2H 9JQ<br>United Kingdom |

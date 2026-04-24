@@ -36,7 +36,9 @@
     return '<footer>' +
       '<div class="meta">' +
         '<span>&copy; 2026 Flits</span>' +
-        '<span></span>' +
+        '<span>Forellenweg 8a, Eichendorf, DE</span>' +
+        '<a href="mailto:contact@flits.cc">contact@flits.cc</a>' +
+        '<a href="tel:+4915153616465">+49 1515 3616465</a>' +
       '</div>' +
       '<div class="tickers">' +
         '<a href="/pages/index-ventures">index</a>' +

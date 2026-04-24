@@ -249,7 +249,12 @@ footer .meta {
   display: flex;
   gap: 18px;
 }
-footer .meta span { color: var(--muted); }
+footer .meta span,
+footer .meta a {
+  color: var(--muted);
+  text-decoration: none;
+}
+footer .meta a:hover { color: var(--fg); }
 
 footer .tickers {
   display: flex;
@@ -795,7 +800,10 @@ body.is-navigating main { pointer-events: none; }
   .nav { gap: 14px; }
   .nav .links { gap: 14px; }
   .corner-logo { padding-left: 14px; margin-left: 14px; }
-  footer .meta { gap: 10px; }
+  footer .meta {
+    flex-direction: column;
+    gap: 4px;
+  }
   footer .tickers { gap: 10px; }
   .eyebrow::before, .eyebrow::after { width: 14px; }
   .hero { width: 100%; }
