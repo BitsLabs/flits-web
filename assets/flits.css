@@ -411,6 +411,7 @@ body.is-navigating main { pointer-events: none; }
   font-weight: 400;
   max-width: 32ch;
 }
+.page .side p:empty { display: none; }
 .page .body {
   min-width: 0;
   padding-right: 8px;
@@ -522,12 +523,16 @@ body.is-navigating main { pointer-events: none; }
   padding-top: 3px;
 }
 .notes .title {
+  display: inline-block;
   color: var(--fg);
   font-weight: 500;
   font-size: 13px;
   margin-bottom: 6px;
   letter-spacing: 0.02em;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
 }
+.notes a.title:hover { border-bottom-color: var(--rule); }
 .notes .excerpt {
   color: var(--muted);
   font-family: 'IBM Plex Serif', Georgia, serif;
@@ -535,6 +540,192 @@ body.is-navigating main { pointer-events: none; }
   font-weight: 400;
   font-size: 13px;
   line-height: 1.55;
+}
+
+/* Markdown-rendered page content */
+.markdown-body {
+  color: var(--fg);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.markdown-body .loading,
+.markdown-body .error {
+  color: var(--muted);
+  font-family: 'IBM Plex Serif', Georgia, serif;
+  font-style: italic;
+  margin: 0;
+}
+.markdown-body > :first-child { margin-top: 0; }
+.markdown-body > :last-child { margin-bottom: 0; }
+.markdown-body p,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body blockquote,
+.markdown-body pre,
+.markdown-body table,
+.markdown-body figure {
+  margin: 0 0 18px;
+}
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  margin: 28px 0 10px;
+  font-family: 'IBM Plex Serif', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.15;
+}
+.markdown-body h2 { font-size: 24px; }
+.markdown-body h3 { font-size: 19px; }
+.markdown-body h4 { font-size: 15px; }
+.markdown-body a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.markdown-body a:hover { border-bottom-color: var(--fg); }
+.markdown-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 18px 0;
+  border: 1px solid var(--rule);
+}
+.markdown-body code {
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-size: 0.92em;
+}
+.markdown-body pre {
+  overflow-x: auto;
+  padding: 12px 0;
+  border-top: 1px dashed var(--rule);
+  border-bottom: 1px dashed var(--rule);
+}
+.markdown-body blockquote {
+  padding-left: 18px;
+  border-left: 1px solid var(--rule);
+  color: var(--muted);
+  font-family: 'IBM Plex Serif', Georgia, serif;
+  font-style: italic;
+}
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.markdown-body th {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-align: left;
+  padding: 0 20px 8px 0;
+}
+.markdown-body td {
+  padding: 14px 20px 14px 0;
+  border-bottom: 1px dashed var(--rule);
+  vertical-align: baseline;
+}
+.markdown-body tbody tr:last-child td { border-bottom: none; }
+.markdown-body .md-ledger thead,
+.markdown-body .md-notes thead,
+.markdown-body .md-contact thead { display: none; }
+.markdown-body .md-ledger td:first-child {
+  width: 40px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  font-weight: 500;
+}
+.markdown-body .md-ledger td:nth-child(2) {
+  color: var(--fg);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.markdown-body .md-ledger td:nth-child(3) {
+  color: var(--muted);
+  font-family: 'IBM Plex Serif', Georgia, serif;
+  font-style: italic;
+  font-size: 13px;
+}
+.markdown-body .md-ledger td:nth-child(4) {
+  width: 90px;
+  text-align: right;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding-right: 0;
+}
+.markdown-body .md-ledger tr.active td:nth-child(4) { color: var(--fg); }
+.markdown-body .md-notes td:first-child {
+  width: 90px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding-top: 17px;
+}
+.markdown-body .md-notes td:nth-child(2) {
+  color: var(--fg);
+  font-weight: 500;
+  font-size: 13px;
+}
+.markdown-body .md-notes td:nth-child(3) {
+  color: var(--muted);
+  font-family: 'IBM Plex Serif', Georgia, serif;
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.markdown-body .md-contact td:first-child {
+  width: 120px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.markdown-body .md-contact td:nth-child(2) {
+  color: var(--fg);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.markdown-body .md-contact .meta {
+  display: block;
+  font-family: 'IBM Plex Serif', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 6px;
+}
+.article {
+  max-width: 620px;
+}
+.article .article-back {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.article .date {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.article h2 {
+  margin-top: 0;
+  font-size: clamp(24px, 2.4vw, 34px);
 }
 
 @media (max-width: 720px) {
@@ -566,4 +757,23 @@ body.is-navigating main { pointer-events: none; }
   .ledger .row { grid-template-columns: 32px 1fr auto; }
   .ledger .row .desc { display: none; }
   .contact-grid .field { grid-template-columns: 1fr; gap: 6px; }
+  .markdown-body .md-ledger td:nth-child(3) { display: none; }
+  .markdown-body .md-ledger td:first-child { width: 32px; }
+  .markdown-body .md-contact,
+  .markdown-body .md-contact tbody,
+  .markdown-body .md-contact tr,
+  .markdown-body .md-contact td {
+    display: block;
+    width: 100%;
+  }
+  .markdown-body .md-contact td {
+    padding: 0;
+    border-bottom: none;
+  }
+  .markdown-body .md-contact td:first-child { margin-bottom: 6px; }
+  .markdown-body .md-contact tr {
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    border-bottom: 1px dashed var(--rule);
+  }
 }

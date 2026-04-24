@@ -65,6 +65,7 @@
 
   function settleMain() {
     if (window.FlitsOrreryInit) window.FlitsOrreryInit();
+    if (window.FlitsMarkdownInit) window.FlitsMarkdownInit();
     document.body.classList.remove('is-leaving', 'is-navigating');
     navigating = false;
   }
