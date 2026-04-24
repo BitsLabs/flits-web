@@ -28,6 +28,17 @@
       url.hash === window.location.hash;
   }
 
+  function isNotesArticle(url) {
+    return /\/pages\/notes\/[^/]+\.html$/i.test(url.pathname);
+  }
+
+  function rememberReturnTarget(url) {
+    if (!isNotesArticle(url)) return;
+    try {
+      window.sessionStorage.setItem('flits:return:' + url.pathname, window.location.href);
+    } catch (e) {}
+  }
+
   function linkUrl(a) {
     var raw = a.getAttribute('href') || '';
     if (/^(pages\/|\.\/pages\/|Flits\.html$|\.\/Flits\.html$)/.test(raw)) {
@@ -147,6 +158,7 @@
       return;
     }
     e.preventDefault();
+    rememberReturnTarget(url);
     swapTo(url);
   });
 

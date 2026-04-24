@@ -267,6 +267,37 @@
     return path.split('/').pop().replace(/\.md$/i, '');
   }
 
+  function articlePageHref(path) {
+    return 'notes/' + articleSlug(path) + '.html';
+  }
+
+  function fallbackBackHref() {
+    return window.location.pathname.indexOf('/pages/notes/') !== -1 ? '../notes.html' : 'notes.html';
+  }
+
+  function articleBackHref() {
+    var fallback = fallbackBackHref();
+    try {
+      var key = 'flits:return:' + window.location.pathname;
+      var stored = window.sessionStorage && window.sessionStorage.getItem(key);
+      if (stored) return stored;
+
+      if (document.referrer) {
+        var referrer = new URL(document.referrer);
+        if (referrer.origin === window.location.origin && referrer.href !== window.location.href) {
+          return referrer.href;
+        }
+      }
+    } catch (e) {}
+    return fallback;
+  }
+
+  function updateArticleBackLinks(root) {
+    root.querySelectorAll('[data-article-back]').forEach(function (link) {
+      link.setAttribute('href', articleBackHref());
+    });
+  }
+
   function renderArticleIndex(section, body, parsed, mdUrl) {
     var manifestUrl = resolveUrl(parsed.data.articles, mdUrl);
 
@@ -279,6 +310,7 @@
               var article = parseFrontMatter(source);
               return {
                 url: url,
+                href: articlePageHref(path),
                 slug: articleSlug(path),
                 title: article.data.title || articleSlug(path),
                 date: article.data.date || '',
@@ -291,7 +323,7 @@
       .then(function (articles) {
         body.innerHTML = '<div class="notes">' + articles.map(function (article) {
           var title = article.hasBody
-            ? '<a class="title" href="' + escapeHtml(article.url) + '" data-article="' + escapeHtml(article.url) + '">' + escapeHtml(article.title) + '</a>'
+            ? '<a class="title" href="' + escapeHtml(article.href) + '">' + escapeHtml(article.title) + '</a>'
             : '<span class="title">' + escapeHtml(article.title) + '</span>';
           return '<article>' +
             '<span class="date">' + escapeHtml(article.date) + '</span>' +
@@ -302,19 +334,26 @@
       });
   }
 
-  function renderArticle(section, url) {
+  function renderArticle(section, url, isolated, updateTitle) {
     var body = section.querySelector('.markdown-body');
-    if (!body) return;
+    if (!body) return Promise.resolve();
+
+    if (section.dataset.loadedArticle === url && body.innerHTML.trim()) {
+      updateArticleBackLinks(section);
+      return Promise.resolve();
+    }
+
+    section.dataset.loadedArticle = url;
 
     body.setAttribute('aria-busy', 'true');
 
-    fetchText(url)
+    return fetchText(url)
       .then(function (source) {
         var parsed = parseFrontMatter(source);
-        if (parsed.data.title) document.title = parsed.data.title + ' - Flits';
+        if (updateTitle !== false && parsed.data.title) document.title = parsed.data.title + ' - Flits';
         return getParser().then(function (render) {
           body.innerHTML = '<article class="article">' +
-            '<a class="article-back" href="#" data-article-index>Notes</a>' +
+            '<a class="article-back" href="' + escapeHtml(articleBackHref()) + '" data-article-back>' + (isolated ? 'Back' : 'Notes') + '</a>' +
             '<div class="date">' + escapeHtml(parsed.data.date || '') + '</div>' +
             '<h2>' + escapeHtml(parsed.data.title || '') + '</h2>' +
             render(parsed.body) +
@@ -327,8 +366,14 @@
       .catch(function (error) {
         body.removeAttribute('aria-busy');
         body.innerHTML = '<p class="error">Could not load article.</p>';
+        section.dataset.loadedArticle = '';
         if (window.console) console.error(error);
       });
+  }
+
+  function loadArticlePage(section) {
+    var mdUrl = resolveUrl(section.dataset.articleMd, window.location.href);
+    return renderArticle(section, mdUrl, true, true);
   }
 
   function enhanceTables(root) {
@@ -417,15 +462,22 @@
   }
 
   window.FlitsMarkdownInit = function () {
-    return Promise.all(Array.from(document.querySelectorAll('[data-md]')).map(loadPage));
+    return Promise.all(
+      Array.from(document.querySelectorAll('[data-md]')).map(loadPage)
+        .concat(Array.from(document.querySelectorAll('[data-article-md]')).map(loadArticlePage))
+    );
   };
 
   window.FlitsMarkdownHydrateMain = function (html, pageUrl) {
     var doc = new DOMParser().parseFromString('<main>' + html + '</main>', 'text/html');
     var main = doc.querySelector('main');
-    return Promise.all(Array.from(main.querySelectorAll('[data-md]')).map(function (section) {
-      return renderPageSection(section, pageUrl, false);
-    })).then(function () {
+    return Promise.all(
+      Array.from(main.querySelectorAll('[data-md]')).map(function (section) {
+        return renderPageSection(section, pageUrl, false);
+      }).concat(Array.from(main.querySelectorAll('[data-article-md]')).map(function (section) {
+        return renderArticle(section, resolveUrl(section.dataset.articleMd, pageUrl), true, false);
+      }))
+    ).then(function () {
       return main.innerHTML;
     });
   };
@@ -436,15 +488,6 @@
   };
 
   document.addEventListener('click', function (event) {
-    var article = event.target.closest && event.target.closest('[data-article]');
-    if (article) {
-      var section = article.closest('[data-md]');
-      if (!section) return;
-      event.preventDefault();
-      renderArticle(section, article.getAttribute('data-article'));
-      return;
-    }
-
     var index = event.target.closest && event.target.closest('[data-article-index]');
     if (index) {
       var page = index.closest('[data-md]');
