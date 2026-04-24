@@ -273,8 +273,8 @@ main::before {
 
 /* ========== Page transitions ========== */
 @keyframes flits-enter {
-  0%   { opacity: 0; transform: translateY(6px); filter: blur(0.6px); }
-  100% { opacity: 1; transform: translateY(0);   filter: blur(0);     }
+  0%   { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0);   }
 }
 @keyframes flits-enter-soft {
   0%   { opacity: 0; transform: translateY(4px); }
