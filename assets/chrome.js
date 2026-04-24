@@ -39,9 +39,6 @@
         '<span></span>' +
       '</div>' +
       '<div class="tickers">' +
-        '<a href="/pages/contact">mail</a>' +
-        '<a href="/pages/notes">notes</a>' +
-        '<a href="/pages/principal">principal</a>' +
         '<a href="/pages/index-ventures">index</a>' +
         '<a href="/pages/legal">legal</a>' +
         '<a href="https://www.linkedin.com/company/flitsco">in</a>' +
