@@ -40,6 +40,8 @@
       '<div class="tickers">' +
         '<a href="/pages/index-ventures">index</a>' +
         '<a href="/pages/legal">legal</a>' +
+        '<a href="/privacy">privacy</a>' +
+        '<a href="/support">support</a>' +
         '<a href="https://www.linkedin.com/company/flitsco">in</a>' +
       '</div>' +
     '</footer>';

@@ -21,7 +21,9 @@
     'content/notes.md',
     'content/thesis.md',
     'content/principal.md',
-    'content/legal.md'
+    'content/legal.md',
+    'content/privacy.md',
+    'content/support.md'
   ];
 
   function loadScript(src) {
