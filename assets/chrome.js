@@ -26,6 +26,7 @@
       '<nav class="nav"><div class="links">' +
         navLink('/pages/index-ventures', 'Index') +
         navLink('/pages/thesis', 'Thesis') +
+        navLink('/pages/principal', 'Principal') +
         navLink('/pages/contact', 'Contact') +
       '</div></nav>' +
     '</header>';
@@ -35,11 +36,12 @@
     return '<footer>' +
       '<div class="meta">' +
         '<span>&copy; 2026 Flits</span>' +
-        '<span>Registered&nbsp;&middot;&nbsp;EU</span>' +
+        '<span></span>' +
       '</div>' +
       '<div class="tickers">' +
         '<a href="/pages/contact">mail</a>' +
         '<a href="/pages/notes">notes</a>' +
+        '<a href="/pages/principal">principal</a>' +
         '<a href="/pages/index-ventures">index</a>' +
         '<a href="/pages/legal">legal</a>' +
         '<a href="https://www.linkedin.com/company/flitsco">in</a>' +

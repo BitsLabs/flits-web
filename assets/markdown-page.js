@@ -21,6 +21,7 @@
     'content/experiments.md',
     'content/notes.md',
     'content/thesis.md',
+    'content/principal.md',
     'content/legal.md'
   ];
 
