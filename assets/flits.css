@@ -201,8 +201,11 @@ main::-webkit-scrollbar { display: none; }
 
 .pill-row {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   gap: 0;
+  max-width: 100%;
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -785,6 +788,13 @@ body.is-navigating main { pointer-events: none; }
   footer .tickers { gap: 10px; }
   .eyebrow::before, .eyebrow::after { width: 14px; }
   .hero { width: 100%; }
+  .pill-row {
+    row-gap: 4px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+  }
+  .pill-row a { padding: 6px 10px; }
+  .pill-row .sep { display: none; }
   .page {
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;
