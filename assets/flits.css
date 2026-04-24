@@ -71,7 +71,6 @@ header {
   text-transform: uppercase;
   font-size: 12px;
   padding-left: 12px;
-  border-left: 1px solid var(--rule);
   line-height: 1;
 }
 .nav {
