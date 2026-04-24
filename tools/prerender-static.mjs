@@ -4,13 +4,13 @@ import path from 'node:path';
 const root = process.cwd();
 const siteUrl = 'https://flits.cc';
 const pageMap = [
-  ['pages/index-ventures.html', 'content/index-ventures.md', '/pages/index-ventures'],
-  ['pages/contact.html', 'content/contact.md', '/pages/contact'],
-  ['pages/ventures.html', 'content/ventures.md', '/pages/ventures'],
-  ['pages/notes.html', 'content/notes.md', '/pages/notes'],
-  ['pages/thesis.html', 'content/thesis.md', '/pages/thesis'],
-  ['pages/principal.html', 'content/principal.md', '/pages/principal'],
-  ['pages/legal.html', 'content/legal.md', '/pages/legal'],
+  ['index-ventures.html', 'content/index-ventures.md', '/index-ventures'],
+  ['contact.html', 'content/contact.md', '/contact'],
+  ['ventures.html', 'content/ventures.md', '/ventures'],
+  ['notes.html', 'content/notes.md', '/notes'],
+  ['thesis.html', 'content/thesis.md', '/thesis'],
+  ['principal.html', 'content/principal.md', '/principal'],
+  ['legal.html', 'content/legal.md', '/legal'],
   ['privacy.html', 'content/privacy.md', '/privacy'],
   ['support.html', 'content/support.md', '/support']
 ];
@@ -18,7 +18,7 @@ const pageMap = [
 const articlePaths = JSON.parse(read('content/articles.json'));
 const articleMap = articlePaths.map((mdPath) => {
   const slug = path.basename(mdPath, '.md');
-  return [`pages/notes/${slug}.html`, path.join('content', mdPath), `/pages/notes/${slug}`];
+  return [`notes/${slug}.html`, path.join('content', mdPath), `/notes/${slug}`];
 });
 
 function read(file) {
@@ -27,6 +27,15 @@ function read(file) {
 
 function write(file, content) {
   fs.writeFileSync(path.join(root, file), content);
+}
+
+function relativeUrl(fromFile, toFile) {
+  return path.relative(path.dirname(fromFile), toFile).replace(/\\/g, '/') || path.basename(toFile);
+}
+
+function normalizeAssetUrls(html, htmlPath) {
+  const assetPath = relativeUrl(htmlPath, 'assets');
+  return html.replace(/((?:href|src)=["'])(?:\.\/)?(?:\.\.\/)*assets\//g, `$1${assetPath}/`);
 }
 
 function escapeHtml(value = '') {
@@ -217,7 +226,7 @@ function upsertHead(html, route, parsed) {
 
 function renderPage(htmlPath, mdPath, route) {
   const parsed = parseFrontMatter(read(mdPath));
-  let html = read(htmlPath);
+  let html = normalizeAssetUrls(read(htmlPath), htmlPath);
   let bodyHtml;
 
   if (parsed.data.articles) {
@@ -227,7 +236,7 @@ function renderPage(htmlPath, mdPath, route) {
       return '<article>' +
         `<span class="date">${escapeHtml(article.data.date || '')}</span>` +
         '<div>' +
-        `<a class="title" href="/pages/notes/${slug}">${escapeHtml(article.data.title || slug)}</a>` +
+        `<a class="title" href="/notes/${slug}">${escapeHtml(article.data.title || slug)}</a>` +
         `<div class="excerpt">${escapeHtml(article.data.excerpt || '')}</div>` +
         '</div>' +
         '</article>';
@@ -238,27 +247,30 @@ function renderPage(htmlPath, mdPath, route) {
   }
 
   html = html
+    .replace(/data-md="[^"]*"/, `data-md="${relativeUrl(htmlPath, mdPath)}"`)
     .replace(/<div class="kicker">[\s\S]*?<\/div>/, `<div class="kicker">${escapeHtml(parsed.data.kicker || '')}</div>`)
     .replace(/<h1>[\s\S]*?<\/h1>/, `<h1>${parsed.data.heading || escapeHtml(parsed.data.title || '')}</h1>`)
     .replace(/<p class="intro">[\s\S]*?<\/p>/, `<p class="intro">${escapeHtml(parsed.data.intro || '')}</p>`)
     .replace(/<p class="aside">[\s\S]*?<\/p>/, `<p class="aside">${escapeHtml(parsed.data.aside || '')}</p>`)
-    .replace(/<div class="body markdown-body">[\s\S]*?<\/div>\s*<\/section>/, `<div class="body markdown-body">\n${bodyHtml}\n      </div>\n    </section>`);
+    .replace(/<div class="body markdown-body">[\s\S]*?<\/div>\s*<\/section>/, `<div class="body markdown-body">\n${normalizeAssetUrls(bodyHtml, htmlPath)}\n      </div>\n    </section>`);
 
   write(htmlPath, upsertHead(html, route, parsed));
 }
 
 function renderArticle(htmlPath, mdPath, route) {
   const parsed = parseFrontMatter(read(mdPath));
-  let html = read(htmlPath);
+  let html = normalizeAssetUrls(read(htmlPath), htmlPath);
   const title = escapeHtml(parsed.data.title || '');
   const bodyHtml = '<article class="article">' +
-    '<a class="article-back" href="/pages/notes" data-article-back><span class="arrow"><svg viewBox="0 0 20 8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="square" shape-rendering="geometricPrecision"><path d="M1 4 L20 4 M1 4 L5 0.5 M1 4 L5 7.5"/></svg></span>Back</a>' +
+    '<a class="article-back" href="/notes" data-article-back><span class="arrow"><svg viewBox="0 0 20 8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="square" shape-rendering="geometricPrecision"><path d="M1 4 L20 4 M1 4 L5 0.5 M1 4 L5 7.5"/></svg></span>Back</a>' +
     `<div class="date">${escapeHtml(parsed.data.date || '')}</div>` +
     `<h2>${title}</h2>` +
     renderMarkdown(parsed.body) +
     '</article>';
 
-  html = html.replace(/<div class="body markdown-body">[\s\S]*?<\/div>\s*<\/section>/, `<div class="body markdown-body">\n${bodyHtml}\n      </div>\n    </section>`);
+  html = html
+    .replace(/data-article-md="[^"]*"/, `data-article-md="${relativeUrl(htmlPath, mdPath)}"`)
+    .replace(/<div class="body markdown-body">[\s\S]*?<\/div>\s*<\/section>/, `<div class="body markdown-body">\n${normalizeAssetUrls(bodyHtml, htmlPath)}\n      </div>\n    </section>`);
   write(htmlPath, upsertHead(html, route, parsed));
 }
 

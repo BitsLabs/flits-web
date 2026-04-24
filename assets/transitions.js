@@ -52,7 +52,7 @@
   }
 
   function isNotesArticle(url) {
-    return /\/pages\/notes\/[^/.]+(?:\.html)?$/i.test(url.pathname);
+    return /\/notes\/[^/.]+(?:\.html)?$/i.test(url.pathname);
   }
 
   function rememberReturnTarget(url) {
@@ -64,7 +64,7 @@
 
   function linkUrl(a) {
     var raw = a.getAttribute('href') || '';
-    if (/^(pages\/|\.\/pages\/|Flits\.html$|\.\/Flits\.html$)/.test(raw)) {
+    if (/^(notes\/|\.\/notes\/|Flits\.html$|\.\/Flits\.html$)/.test(raw)) {
       return canonicalUrl(new URL(raw.replace(/^\.\//, ''), siteRoot));
     }
     return canonicalUrl(new URL(a.href, window.location.href));

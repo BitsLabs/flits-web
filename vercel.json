@@ -3,8 +3,9 @@
   "trailingSlash": false,
   "buildCommand": "node tools/prerender-static.mjs",
   "redirects": [
-    { "source": "/pages/experiments", "destination": "/pages/index-ventures", "permanent": true },
-    { "source": "/pages/experiments.html", "destination": "/pages/index-ventures", "permanent": true },
+    { "source": "/pages/experiments", "destination": "/index-ventures", "permanent": true },
+    { "source": "/pages/experiments.html", "destination": "/index-ventures", "permanent": true },
+    { "source": "/pages/:path*", "destination": "/:path*", "permanent": true },
     { "source": "/Flits.html", "destination": "/", "permanent": true },
     { "source": "/Flits", "destination": "/", "permanent": true }
   ],

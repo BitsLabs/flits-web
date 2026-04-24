@@ -24,10 +24,10 @@
         '<span class="name">Flits</span>' +
       '</a>' +
       '<nav class="nav"><div class="links">' +
-        navLink('/pages/index-ventures', 'Index') +
-        navLink('/pages/thesis', 'Thesis') +
-        navLink('/pages/principal', 'Principal') +
-        navLink('/pages/contact', 'Contact') +
+        navLink('/index-ventures', 'Index') +
+        navLink('/thesis', 'Thesis') +
+        navLink('/principal', 'Principal') +
+        navLink('/contact', 'Contact') +
       '</div></nav>' +
     '</header>';
   }
@@ -38,8 +38,8 @@
         '<span>&copy; 2026 Flits</span>' +
       '</div>' +
       '<div class="tickers">' +
-        '<a href="/pages/index-ventures">index</a>' +
-        '<a href="/pages/legal">legal</a>' +
+        '<a href="/index-ventures">index</a>' +
+        '<a href="/legal">legal</a>' +
         '<a href="/privacy">privacy</a>' +
         '<a href="/support">support</a>' +
         '<a href="https://www.linkedin.com/company/flitsco">in</a>' +

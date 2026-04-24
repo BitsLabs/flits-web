@@ -10,7 +10,7 @@ aside: Last revised 04 · 2026.
 
 | # | Name | Description | Status |
 |---|---|---|---|
-| 01 | [Digital Ventures](/pages/ventures) | Apps, software products, and operating systems founded, owned, and stewarded by Flits. | Operating |
+| 01 | [Digital Ventures](/ventures) | Apps, software products, and operating systems founded, owned, and stewarded by Flits. | Operating |
 | 02 | Stealth Ventures | Early-stage company concepts and product work not yet public enough for a dedicated page. | Formation |
 | 03 | Archive | Former apps and discontinued software kept as part of the company record. | Wound down |
 

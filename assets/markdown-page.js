@@ -272,11 +272,11 @@
   }
 
   function articlePageHref(path) {
-    return '/pages/notes/' + articleSlug(path);
+    return '/notes/' + articleSlug(path);
   }
 
   function fallbackBackHref() {
-    return '/pages/notes';
+    return '/notes';
   }
 
   function articleBackHref() {
