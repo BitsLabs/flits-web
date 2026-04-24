@@ -821,8 +821,32 @@ body.is-navigating main { pointer-events: none; }
   .ledger .row { grid-template-columns: 32px 1fr auto; }
   .ledger .row .desc { display: none; }
   .contact-grid .field { grid-template-columns: 1fr; gap: 6px; }
-  .markdown-body .md-ledger td:nth-child(3) { display: none; }
-  .markdown-body .md-ledger td:first-child { width: 32px; }
+  .markdown-body .md-ledger,
+  .markdown-body .md-ledger tbody {
+    display: block;
+    width: 100%;
+  }
+  .markdown-body .md-ledger tr {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+    column-gap: 10px;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .markdown-body .md-ledger tr:last-child { border-bottom: none; }
+  .markdown-body .md-ledger td {
+    min-width: 0;
+    padding: 0;
+    border-bottom: none;
+  }
+  .markdown-body .md-ledger td:first-child { width: auto; }
+  .markdown-body .md-ledger td:nth-child(3) {
+    display: block;
+    grid-column: 2 / 4;
+    margin-top: 6px;
+    line-height: 1.45;
+  }
+  .markdown-body .md-ledger td:nth-child(4) { width: auto; }
   .markdown-body .md-contact,
   .markdown-body .md-contact tbody,
   .markdown-body .md-contact tr,
