@@ -2,6 +2,8 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
+    { "source": "/pages/experiments", "destination": "/pages/index-ventures", "permanent": true },
+    { "source": "/pages/experiments.html", "destination": "/pages/index-ventures", "permanent": true },
     { "source": "/Flits.html", "destination": "/", "permanent": true },
     { "source": "/Flits", "destination": "/", "permanent": true }
   ]

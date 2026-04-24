@@ -2,12 +2,12 @@
 title: Ventures
 kicker: § 03 - Ventures
 heading: Small companies,<br>held for the long run.
-intro: Operating businesses we founded, co-founded, or acquired. We prefer majority ownership, evergreen timelines, and boring cashflow.
+intro: Operating products and systems we founded, own, and steward for the long run.
 ---
 
 | # | Name | Description | Status |
 |---|---|---|---|
-| 01 | Carrier & Co. | Newsletter software for writers who aren't in a rush. | Since 2023 |
-| 02 | Drawer | A calm place to keep half-finished things. Private by default. | Since 2024 |
-| 03 | Halftone Studio | Print-on-demand editions of overlooked photography. | Since 2024 |
-| 04 | Orbit Mail | A mailing service for small independent shops. | Since 2025 |
+| 01 | Looped | Habit tracker for building simple routines and keeping daily streaks visible. | Operating |
+| 02 | Bits | Flashcards app for studying and retaining small pieces of knowledge. | Operating |
+| 03 | Flits Access | Course access system for managing gated learning products and student access. | Operating |
+| 04 | Waterly | Water tracker app for logging hydration and building better drinking habits. | Operating |

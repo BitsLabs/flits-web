@@ -18,7 +18,6 @@
     'content/index-ventures.md',
     'content/contact.md',
     'content/ventures.md',
-    'content/experiments.md',
     'content/notes.md',
     'content/thesis.md',
     'content/principal.md',
