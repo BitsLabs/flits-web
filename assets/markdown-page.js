@@ -79,8 +79,18 @@
     return { data: data, body: body };
   }
 
+  function t(key, fallback) {
+    return (window.FlitsT && window.FlitsT(key)) || fallback;
+  }
+
   function resolveUrl(path, base) {
     return new URL(path, base || window.location.href).href;
+  }
+
+  function localeRewrite(url) {
+    var locale = window.FlitsLocale;
+    if (!locale || locale === 'en') return url;
+    return url.replace(/(\/content\/)(?!de\/|zh\/)/, '$1' + locale + '/');
   }
 
   function fetchText(url) {
@@ -97,6 +107,12 @@
         }));
     }
     return textCache.get(key);
+  }
+
+  function fetchLocaleText(url) {
+    var localeUrl = localeRewrite(url);
+    if (localeUrl === url) return fetchText(url);
+    return fetchText(localeUrl).catch(function () { return fetchText(url); });
   }
 
   function fetchJson(url) {
@@ -362,8 +378,9 @@
         var parsed = parseFrontMatter(source);
         if (updateTitle !== false && parsed.data.title) document.title = parsed.data.title + ' - Flits';
         return getParser().then(function (render) {
+          var backLabel = isolated ? t('article.back', 'Back') : t('nav.notes', 'Notes');
           body.innerHTML = '<article class="article">' +
-            '<a class="article-back" href="' + escapeHtml(articleBackHref()) + '" data-article-back>' + backArrow() + (isolated ? 'Back' : 'Notes') + '</a>' +
+            '<a class="article-back" href="' + escapeHtml(articleBackHref()) + '" data-article-back>' + backArrow() + backLabel + '</a>' +
             '<div class="date">' + escapeHtml(parsed.data.date || '') + '</div>' +
             '<h2>' + escapeHtml(parsed.data.title || '') + '</h2>' +
             render(parsed.body) +
@@ -375,7 +392,7 @@
       })
       .catch(function (error) {
         body.removeAttribute('aria-busy');
-        body.innerHTML = '<p class="error">Could not load article.</p>';
+        body.innerHTML = '<p class="error">' + t('error.article', 'Could not load article.') + '</p>';
         section.dataset.loadedArticle = '';
         if (window.console) console.error(error);
       });
@@ -421,7 +438,7 @@
 
     var mdUrl = resolveUrl(section.dataset.md, baseUrl);
 
-    return fetchText(mdUrl)
+    return fetchLocaleText(mdUrl)
       .then(function (source) {
         var parsed = parseFrontMatter(source);
         setText('.kicker', parsed.data.kicker, section);
@@ -445,7 +462,7 @@
       })
       .catch(function (error) {
         body.removeAttribute('aria-busy');
-        body.innerHTML = '<p class="error">Could not load Markdown content.</p>';
+        body.innerHTML = '<p class="error">' + t('error.load', 'Could not load Markdown content.') + '</p>';
         section.dataset.loaded = '';
         if (window.console) console.error(error);
       });
@@ -457,7 +474,7 @@
 
   function preloadPageContent(path) {
     var mdUrl = resolveUrl(path, siteRoot);
-    return fetchText(mdUrl)
+    return fetchLocaleText(mdUrl)
       .then(function (source) {
         var parsed = parseFrontMatter(source);
         if (!parsed.data.articles) return null;

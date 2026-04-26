@@ -1,5 +1,9 @@
 // Flits - shared header and footer
 (function () {
+  function t(key, fallback) {
+    return (window.FlitsT && window.FlitsT(key)) || fallback;
+  }
+
   function canonicalPath(path) {
     if (!path || path === '/Flits' || path === '/Flits.html') return '/';
     return path.replace(/\.html?$/i, '');
@@ -24,10 +28,10 @@
         '<span class="name">Flits</span>' +
       '</a>' +
       '<nav class="nav"><div class="links">' +
-        navLink('/index-ventures', 'Index') +
-        navLink('/thesis', 'Thesis') +
-        navLink('/principal', 'Principal') +
-        navLink('/contact', 'Contact') +
+        navLink('/index-ventures', t('nav.index', 'Index')) +
+        navLink('/thesis', t('nav.thesis', 'Thesis')) +
+        navLink('/principal', t('nav.principal', 'Principal')) +
+        navLink('/contact', t('nav.contact', 'Contact')) +
       '</div></nav>' +
     '</header>';
   }
@@ -38,9 +42,9 @@
         '<span>&copy; 2026 Flits</span>' +
       '</div>' +
       '<div class="tickers">' +
-        '<a href="/index-ventures">index</a>' +
-        '<a href="/legal">legal</a>' +
-        '<a href="/privacy">privacy</a>' +
+        '<a href="/index-ventures">' + t('nav.index', 'index').toLowerCase() + '</a>' +
+        '<a href="/legal">' + t('footer.legal', 'legal') + '</a>' +
+        '<a href="/privacy">' + t('footer.privacy', 'privacy') + '</a>' +
         '<a href="https://www.linkedin.com/company/flitsco">in</a>' +
       '</div>' +
     '</footer>';
