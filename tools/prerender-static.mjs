@@ -21,6 +21,24 @@ const articleMap = articlePaths.map((mdPath) => {
   return [`notes/${slug}.html`, path.join('content', mdPath), `/notes/${slug}`];
 });
 
+const homeLocales = {
+  zh: {
+    file: 'zh.html',
+    route: '/zh',
+    title: 'Flits - 年轻公司的长期归宿',
+    description: 'Flits 构建、投资并长期守护一系列数字产品、系统和资产。',
+    strings: {
+      'nav.index': '目录',
+      'nav.ventures': '企业',
+      'nav.thesis': '理念',
+      'nav.notes': '笔记',
+      'home.eyebrow': '承载雄心',
+      'home.tagline': '构建、投资并守护一系列数字产品、系统和资产。',
+      'home.sub': '成立于 MMXXIII — 耐心资本，永久归宿。'
+    }
+  }
+};
+
 function read(file) {
   return fs.readFileSync(path.join(root, file), 'utf8');
 }
@@ -224,6 +242,27 @@ function upsertHead(html, route, parsed) {
   return next.replace('</title>\n', `</title>\n${tags}\n`);
 }
 
+function applyStaticTranslations(html, strings) {
+  return html.replace(/(<([A-Za-z0-9]+)\b[^>]*\sdata-i18n="([^"]+)"[^>]*>)([\s\S]*?)(<\/\2>)/g, (match, open, tag, key, body, close) => {
+    if (!Object.prototype.hasOwnProperty.call(strings, key)) return match;
+    return `${open}${escapeHtml(strings[key])}${close}`;
+  });
+}
+
+function renderHomeLocale(locale, config) {
+  let html = normalizeAssetUrls(read('index.html'), config.file);
+  html = applyStaticTranslations(html, config.strings)
+    .replace(/<html lang="[^"]*">/, `<html lang="${locale}">`)
+    .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(config.title)}</title>`)
+    .replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${escapeAttr(config.description)}">`)
+    .replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${siteUrl}${config.route}">`)
+    .replace(/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${escapeAttr(config.title)}">`)
+    .replace(/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${escapeAttr(config.description)}">`)
+    .replace(/<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${siteUrl}${config.route}">`)
+    .replace('<script src="assets/i18n.js', `<script>window.FlitsLocaleOverride='${locale}';</script>\n<script src="assets/i18n.js`);
+  write(config.file, html);
+}
+
 function renderPage(htmlPath, mdPath, route) {
   const parsed = parseFrontMatter(read(mdPath));
   let html = normalizeAssetUrls(read(htmlPath), htmlPath);
@@ -276,7 +315,8 @@ function renderArticle(htmlPath, mdPath, route) {
 
 pageMap.forEach(([htmlPath, mdPath, route]) => renderPage(htmlPath, mdPath, route));
 articleMap.forEach(([htmlPath, mdPath, route]) => renderArticle(htmlPath, mdPath, route));
+Object.entries(homeLocales).forEach(([locale, config]) => renderHomeLocale(locale, config));
 
-const routes = ['/', ...pageMap.map(([, , route]) => route), ...articleMap.map(([, , route]) => route)];
+const routes = ['/', ...Object.values(homeLocales).map(({ route }) => route), ...pageMap.map(([, , route]) => route), ...articleMap.map(([, , route]) => route)];
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes.map((route) => `  <url><loc>${siteUrl}${route}</loc></url>`).join('\n')}\n</urlset>\n`);
 write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`);

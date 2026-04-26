@@ -1,11 +1,24 @@
 // Flits — browser-language i18n (en / de / zh)
 (function () {
+  function localeFromPath() {
+    var first = (window.location.pathname || '').split('/')[1];
+    if (first === 'de') return 'de';
+    if (first === 'zh') return 'zh';
+    return null;
+  }
+
   function detectLocale() {
+    if (window.FlitsLocaleOverride === 'de') return 'de';
+    if (window.FlitsLocaleOverride === 'zh') return 'zh';
+
+    var pathLocale = localeFromPath();
+    if (pathLocale) return pathLocale;
+
     var langs = navigator.languages && navigator.languages.length
       ? navigator.languages
       : [navigator.language || 'en'];
     for (var i = 0; i < langs.length; i++) {
-      var lang = (langs[i] || '').toLowerCase().split('-')[0];
+      var lang = (langs[i] || '').toLowerCase().replace(/_/g, '-').split('-')[0];
       if (lang === 'de') return 'de';
       if (lang === 'zh') return 'zh';
     }
@@ -55,8 +68,8 @@
       'footer.legal':   '法律',
       'footer.privacy': '隐私',
       'home.eyebrow': '承载雄心',
-      'home.tagline': '构建、投资并守护一系列数字产品、系统和 资产。',
-      'home.sub':     '成立于 MMXXIII — 耗心资本，永久归宿。',
+      'home.tagline': '构建、投资并守护一系列数字产品、系统和资产。',
+      'home.sub':     '成立于 MMXXIII — 耐心资本，永久归宿。',
       'article.back':   '返回',
       'error.load':    '无法加载内容。',
       'error.article': '无法加载文章。'

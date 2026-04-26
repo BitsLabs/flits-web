@@ -12,6 +12,15 @@
     { "source": "/imprint", "destination": "/legal", "permanent": true },
     { "source": "/imprint.html", "destination": "/legal", "permanent": true }
   ],
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        { "type": "header", "key": "accept-language", "value": ".*[zZ][hH].*" }
+      ],
+      "destination": "/zh.html"
+    }
+  ],
   "headers": [
     {
       "source": "/content/(.*)",

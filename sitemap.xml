@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://flits.cc/</loc></url>
+  <url><loc>https://flits.cc/zh</loc></url>
   <url><loc>https://flits.cc/index-ventures</loc></url>
   <url><loc>https://flits.cc/contact</loc></url>
   <url><loc>https://flits.cc/ventures</loc></url>
@@ -10,7 +11,5 @@
   <url><loc>https://flits.cc/legal</loc></url>
   <url><loc>https://flits.cc/privacy</loc></url>
   <url><loc>https://flits.cc/support</loc></url>
-  <url><loc>https://flits.cc/notes/on-keeping-things-small</loc></url>
-  <url><loc>https://flits.cc/notes/the-case-for-holding-domains</loc></url>
   <url><loc>https://flits.cc/notes/founding-flits</loc></url>
 </urlset>
