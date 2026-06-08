@@ -2,7 +2,7 @@
 title: Kontakt
 kicker: § 02 - Kontakt
 heading: Wir lesen jeden<br>Brief, den wir erhalten.
-intro: Flits ist ein kleines Team. Pitches, Vorstellungen und langsame Korrespondenz sind willkommen — wir antworten innerhalb einer Woche, meist früher.
+intro: Pitches, Vorstellungen und langsame Korrespondenz sind willkommen — wir antworten innerhalb einer Woche, meist früher.
 aside: Für rechtliche Angelegenheiten wenden Sie sich bitte an den eingetragenen Sitz.
 ---
 
