@@ -2,7 +2,7 @@
 title: Contact
 kicker: § 02 - Contact
 heading: We read every<br>letter we receive.
-intro: Flits is a small team. Pitches, introductions, and slow correspondence are all welcome - we reply within a week, usually sooner.
+intro: Pitches, introductions, and slow correspondence are all welcome - we reply within a week, usually sooner.
 aside: For legal matters, please address the registered office.
 ---
 
