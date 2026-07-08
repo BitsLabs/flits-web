@@ -1,38 +1,17 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "buildCommand": "node tools/prerender-static.mjs",
-  "outputDirectory": ".",
   "redirects": [
-    { "source": "/pages/experiments", "destination": "/index-ventures", "permanent": true },
-    { "source": "/pages/experiments.html", "destination": "/index-ventures", "permanent": true },
     { "source": "/pages/:path*", "destination": "/:path*", "permanent": true },
     { "source": "/Flits.html", "destination": "/", "permanent": true },
     { "source": "/Flits", "destination": "/", "permanent": true },
     { "source": "/imprint", "destination": "/legal", "permanent": true },
-    { "source": "/imprint.html", "destination": "/legal", "permanent": true }
-  ],
-  "rewrites": [
-    {
-      "source": "/",
-      "has": [
-        { "type": "header", "key": "accept-language", "value": ".*[zZ][hH].*" }
-      ],
-      "destination": "/zh.html"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/content/(.*)",
-      "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex" }
-      ]
-    },
-    {
-      "source": "/assets/(.*).md",
-      "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex" }
-      ]
-    }
+    { "source": "/imprint.html", "destination": "/legal", "permanent": true },
+    { "source": "/ventures", "destination": "/", "permanent": false },
+    { "source": "/index-ventures", "destination": "/", "permanent": false },
+    { "source": "/thesis", "destination": "/", "permanent": false },
+    { "source": "/contact", "destination": "/", "permanent": false },
+    { "source": "/support", "destination": "/", "permanent": false },
+    { "source": "/zh", "destination": "/", "permanent": false }
   ]
 }
