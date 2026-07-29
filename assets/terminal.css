@@ -23,8 +23,8 @@ body {
 
 .term {
   max-width: 74ch;
-  margin: 0;
-  padding: 64px 24px 120px 56px;
+  margin: 0 auto;
+  padding: 64px 24px 120px;
 }
 
 @media (max-width: 520px) {
