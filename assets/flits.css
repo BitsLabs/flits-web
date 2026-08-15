@@ -19,7 +19,7 @@
   --radius: 10px;
   --radius-lg: 20px;
 
-  --section-y: clamp(72px, 11vw, 128px);
+  --section-y: clamp(56px, 8vw, 104px);
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
@@ -142,31 +142,31 @@ h1, h2, h3, h4 {
 }
 
 .display {
-  font-size: clamp(2.875rem, 12vw, 5.5rem);
+  font-size: clamp(2.125rem, 7.6vw, 4.25rem);
   line-height: 1.06;
   letter-spacing: -0.03em;
 }
 
 .h1 {
-  font-size: clamp(2.5rem, 10.5vw, 4.5rem);
+  font-size: clamp(1.875rem, 6.6vw, 3.25rem);
   line-height: 1.07;
   letter-spacing: -0.03em;
 }
 
 .h2 {
-  font-size: clamp(1.75rem, 7vw, 2.5rem);
+  font-size: clamp(1.375rem, 4.8vw, 1.875rem);
   font-weight: 400;
   line-height: 1.15;
   letter-spacing: -0.025em;
 }
 
 .h3 {
-  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+  font-size: clamp(1.0625rem, 1.8vw, 1.1875rem);
   letter-spacing: -0.022em;
 }
 
 .lede {
-  font-size: clamp(1.1875rem, 5vw, 1.375rem);
+  font-size: clamp(1rem, 3.7vw, 1.125rem);
   line-height: 1.5;
   letter-spacing: -0.011em;
   color: var(--muted);
@@ -178,7 +178,7 @@ h1, h2, h3, h4 {
   flex-wrap: wrap;
   align-items: center;
   gap: 8px 16px;
-  font-size: clamp(1rem, 4.3vw, 1.0625rem);
+  font-size: clamp(0.875rem, 3.2vw, 0.9375rem);
   letter-spacing: -0.005em;
   color: var(--faint);
 }
@@ -222,7 +222,7 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font-size: clamp(1.375rem, 5.6vw, 1.5rem);
+  font-size: clamp(1.0625rem, 4vw, 1.1875rem);
   font-weight: 700;
   letter-spacing: -0.032em;
   text-decoration: none;
@@ -260,8 +260,8 @@ h1, h2, h3, h4 {
 .icon-btn {
   display: inline-grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: 999px;
   color: #ffffff;
   transition: opacity 0.18s var(--ease), background 0.18s var(--ease);
@@ -270,8 +270,8 @@ h1, h2, h3, h4 {
 .icon-btn:hover { opacity: 0.65; }
 
 .icon-btn svg {
-  width: 25px;
-  height: 25px;
+  width: 21px;
+  height: 21px;
   stroke: #ffffff;
 }
 
@@ -332,8 +332,8 @@ h1, h2, h3, h4 {
 
 .menu__body a {
   display: block;
-  padding: 10px 0;
-  font-size: 1.5rem;
+  padding: 9px 0;
+  font-size: 1.1875rem;
   font-weight: 500;
   letter-spacing: -0.026em;
   text-decoration: none;
@@ -385,7 +385,7 @@ body.is-locked { overflow: hidden; }
   background: none;
   color: var(--fg);
   font: inherit;
-  font-size: 1.0625rem;
+  font-size: 1rem;
   letter-spacing: -0.01em;
   outline: none;
 }
@@ -407,7 +407,7 @@ body.is-locked { overflow: hidden; }
 .search__results a:hover { opacity: 0.7; }
 
 .search__results h2 {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 400;
   letter-spacing: -0.018em;
 }
@@ -430,10 +430,10 @@ body.is-locked { overflow: hidden; }
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 56px;
-  padding: 0 32px;
+  min-height: 46px;
+  padding: 0 22px;
   border-radius: 999px;
-  font-size: clamp(1rem, 4.3vw, 1.0625rem);
+  font-size: clamp(0.875rem, 3.3vw, 0.9375rem);
   font-weight: 500;
   letter-spacing: -0.012em;
   text-decoration: none;
@@ -481,7 +481,7 @@ body.is-locked { overflow: hidden; }
 
 .view-all {
   flex: none;
-  font-size: clamp(1.0625rem, 4.6vw, 1.125rem);
+  font-size: clamp(0.9375rem, 3.4vw, 1rem);
   letter-spacing: -0.015em;
   text-decoration: none;
   transition: color 0.18s var(--ease);
@@ -569,7 +569,7 @@ body.is-locked { overflow: hidden; }
 .card:hover .card__media > * { transform: scale(1.03); }
 
 .card__title {
-  font-size: clamp(1.375rem, 6.3vw, 1.5rem);
+  font-size: clamp(1.0625rem, 4.2vw, 1.1875rem);
   font-weight: 400;
   line-height: 1.22;
   letter-spacing: -0.02em;
@@ -584,7 +584,7 @@ body.is-locked { overflow: hidden; }
   gap: 6px 18px;
   margin-top: auto;
   padding-top: 4px;
-  font-size: clamp(0.9375rem, 4.4vw, 1rem);
+  font-size: clamp(0.8125rem, 3.1vw, 0.875rem);
   letter-spacing: -0.005em;
   color: var(--faint);
 }
@@ -796,7 +796,7 @@ a.panel:hover {
 }
 
 .specs dd {
-  font-size: 1.0625rem;
+  font-size: 0.9375rem;
   letter-spacing: -0.01em;
 }
 
@@ -807,15 +807,15 @@ a.panel:hover {
 /* ---------------------------------------------------------------- prose */
 
 .prose {
-  max-width: 46rem;
-  font-size: 1.0625rem;
+  max-width: 44rem;
+  font-size: 1rem;
   line-height: 1.65;
   letter-spacing: -0.011em;
   color: #e6e6e6;
 }
 
 @media (min-width: 768px) {
-  .prose { font-size: 1.125rem; }
+  .prose { font-size: 1.0625rem; }
 }
 
 .prose > * + * { margin-top: 1.35em; }
@@ -825,7 +825,7 @@ a.panel:hover {
 .prose p { text-wrap: pretty; }
 
 .prose h2 {
-  font-size: clamp(1.375rem, 2.6vw, 1.75rem);
+  font-size: clamp(1.1875rem, 2.2vw, 1.375rem);
   letter-spacing: -0.026em;
   color: var(--fg);
   margin-top: 2.2em;
@@ -833,7 +833,7 @@ a.panel:hover {
 }
 
 .prose h3 {
-  font-size: clamp(1.0625rem, 1.8vw, 1.1875rem);
+  font-size: 1rem;
   font-weight: 500;
   letter-spacing: -0.018em;
   color: var(--fg);
@@ -916,7 +916,7 @@ pre.code {
   flex-wrap: wrap;
   gap: 8px 24px;
   padding-bottom: clamp(24px, 3vw, 40px);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--faint);
 }
 
