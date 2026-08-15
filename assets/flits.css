@@ -482,7 +482,7 @@ body.is-locked { overflow: hidden; }
 
 .section-head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 24px;
   margin-bottom: clamp(24px, 3vw, 40px);
@@ -490,14 +490,16 @@ body.is-locked { overflow: hidden; }
 
 .view-all {
   flex: none;
+  align-self: center;
   font-size: 0.875rem;
+  line-height: 1;
   letter-spacing: -0.01em;
-  color: var(--muted);
+  color: var(--faint);
   text-decoration: none;
   transition: color 0.18s var(--ease);
 }
 
-.view-all:hover { color: var(--fg); }
+.view-all:hover { color: var(--muted); }
 
 /* ---------------------------------------------------------------- rails & grids */
 
@@ -1080,4 +1082,32 @@ main { animation: page-in 0.36s var(--ease) both; }
 @media (prefers-reduced-motion: reduce) {
   main { animation: none; }
   @view-transition { navigation: none; }
+}
+
+/* ---------------------------------------------------------------- math */
+
+.math {
+  margin-top: 1.6em;
+  padding: 22px 20px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+}
+
+.math .katex-display {
+  margin: 0;
+  padding-inline: 2px;
+}
+
+.katex { color: #ededed; }
+
+.prose .math + p { margin-top: 1.6em; }
+
+.prose .math-note {
+  margin-top: 0.9em;
+  font-size: 0.875rem;
+  color: var(--faint);
 }

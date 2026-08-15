@@ -14,7 +14,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/flits.css?v=5">
+<link rel="stylesheet" href="/assets/flits.css?v=6">
+<link rel="stylesheet" href="/assets/katex/katex.min.css">
 <link rel="icon" type="image/png" href="/assets/flits-logo-inverted.png">
 <link rel="icon" type="image/png" href="/assets/flits-logo-inverted.png" media="(prefers-color-scheme: light)">
 <link rel="icon" type="image/png" href="/assets/flits-logo.png" media="(prefers-color-scheme: dark)">
@@ -104,10 +105,13 @@
 
     <h2>The cost of waiting</h2>
     <p>Every option has a premium, and for a domain the premium is the renewal. You pay it each year for the privilege of deciding later. The arithmetic is unremarkable:</p>
-    <pre class="code">  cost   =  n × r                (bounded, known)
-  value  =  max(0, V - n × r)    (unbounded, unknown)</pre>
-    <p>Where n is years held, r the annual renewal, and V whatever the name turns out to be worth to whoever eventually needs it — us, or someone building the thing we once described to ourselves and never built. The left side is a rounding error that compounds slowly. The right side is either zero or large.</p>
-    <p>That asymmetry is the whole decision. The question is not <em>is this name worth what we are paying</em> but <em>is there a plausible world in which V exceeds a decade of renewals</em>. For a name that is short, plain and unencumbered, the answer is usually yes. For a clever one, usually no.</p>
+    <div class="math">$$\begin{aligned}
+\text{cost} \;&= n\,r \\[2pt]
+\text{value} \;&= \max\!\left(0,\; V - n\,r\right)
+\end{aligned}$$</div>
+    <p class="math-note">Cost is bounded and known; value is unbounded and unknown.</p>
+    <p>Where \(n\) is years held, \(r\) the annual renewal, and \(V\) whatever the name turns out to be worth to whoever eventually needs it — us, or someone building the thing we once described to ourselves and never built. The left side is a rounding error that compounds slowly. The right side is either zero or large.</p>
+    <p>That asymmetry is the whole decision. The question is not <em>is this name worth what we are paying</em> but <em>is there a plausible world in which \(V\) exceeds a decade of renewals</em>. For a name that is short, plain and unencumbered, the answer is usually yes. For a clever one, usually no.</p>
 
     <h2>What a name buys you</h2>
     <p>The more useful thing a good domain does is constrain. A vague name permits anything, which is another way of saying it directs nothing. A specific one carries a product inside it — a scope, an audience, sometimes a business model — and owning it keeps that direction cheap to walk back to.</p>
@@ -191,6 +195,9 @@
   </div>
 </footer>
 
-<script src="/assets/flits.js?v=5" defer></script>
+<script src="/assets/flits.js?v=6" defer></script>
+<script src="/assets/katex/katex.min.js" defer></script>
+<script src="/assets/katex/auto-render.min.js" defer></script>
+<script src="/assets/math.js?v=1" defer></script>
 </body>
 </html>
