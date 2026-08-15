@@ -1092,19 +1092,17 @@ main { animation: page-in 0.36s var(--ease) both; }
 /* ---------------------------------------------------------------- math */
 
 .math {
-  margin-top: 1.6em;
-  padding: 22px 20px;
-  border: 1px solid var(--line-soft);
-  border-radius: var(--radius);
-  background: var(--surface);
+  margin-top: 1.8em;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
-  scrollbar-width: thin;
+  scrollbar-width: none;
 }
+
+.math::-webkit-scrollbar { display: none; }
 
 .math .katex-display {
   margin: 0;
-  padding-inline: 2px;
+  padding-block: 2px;
 }
 
 .katex { color: #ededed; }
