@@ -958,32 +958,6 @@ pre.code {
 
 .back-link svg { width: 14px; height: 14px; }
 
-/* ---------------------------------------------------------------- cta strip */
-
-.cta {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  align-items: flex-start;
-  padding: clamp(32px, 5vw, 64px);
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-  border: 1px solid var(--line-soft);
-}
-
-@media (min-width: 900px) {
-  .cta {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .cta__text { max-width: 34rem; }
-}
-
-.cta__text > p { margin-top: 10px; }
-
-.cta .h2 { max-width: 20ch; }
-
 /* ---------------------------------------------------------------- footer */
 
 .site-footer {
