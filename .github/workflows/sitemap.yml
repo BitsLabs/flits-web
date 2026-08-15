@@ -1,0 +1,52 @@
+name: Sitemap
+
+# Regenerates sitemap.xml whenever a page is added, renamed or removed, and
+# commits the result back to the branch that was pushed. Nobody has to
+# remember to edit sitemap.xml by hand.
+
+on:
+  push:
+    branches: ['**']
+    paths:
+      - '**.html'
+      - 'vercel.json'
+      - 'scripts/generate-sitemap.mjs'
+      - '.github/workflows/sitemap.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# One run per branch; a newer push supersedes an in-flight run.
+concurrency:
+  group: sitemap-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          # Full history so <lastmod> can come from each file's last commit.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Regenerate sitemap.xml
+        run: node scripts/generate-sitemap.mjs
+
+      - name: Commit if it changed
+        run: |
+          if git diff --quiet -- sitemap.xml; then
+            echo "sitemap.xml already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git commit -m "Update sitemap.xml"
+          git push origin HEAD:${{ github.ref_name }}
