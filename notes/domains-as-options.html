@@ -13,35 +13,109 @@
 <meta name="theme-color" content="#000000">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/terminal.css?v=1">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/flits.css?v=3">
 <link rel="icon" type="image/png" href="/assets/flits-logo-inverted.png">
 <link rel="icon" type="image/png" href="/assets/flits-logo-inverted.png" media="(prefers-color-scheme: light)">
 <link rel="icon" type="image/png" href="/assets/flits-logo.png" media="(prefers-color-scheme: dark)">
 </head>
 <body>
-<main class="term">
 
-  <p class="li"><a class="md" href="/notes">[&lt;- Back](<span class="u">/notes</span>)</a></p>
+<a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="sep" aria-hidden="true">~~~</div>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="wordmark" href="/">Flits</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/#holdings">Holdings</a>
+      <a href="/notes" aria-current="page">Notes</a>
+      <a href="/principal">Principal</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" type="button" data-search aria-label="Search" aria-controls="search" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.25"/><path d="m16 16 4.5 4.5"/></svg>
+      </button>
+      <button class="icon-btn" type="button" data-menu aria-label="Open menu" aria-controls="menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.75" width="18" height="14.5" rx="3.5"/><path d="M9.25 4.75v14.5" stroke-linecap="round"/><path d="M6.5 4.75h2.75v14.5H6.5A3.5 3.5 0 0 1 3 15.75v-7.5a3.5 3.5 0 0 1 3.5-3.5z" fill="currentColor" stroke="none" opacity="0.9"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
 
-  <h1 class="title">Domains as Options<span class="cursor" aria-hidden="true"></span></h1>
+<div class="menu" id="menu" data-open="false" aria-hidden="true">
+  <div class="menu__bar wrap">
+    <a class="wordmark" href="/">Flits</a>
+    <div class="nav-actions">
+      <button class="icon-btn" type="button" data-menu-close aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="menu__body">
+    <div class="menu__group">
+      <p class="menu__label">Company</p>
+      <a href="/">Home</a>
+      <a href="/#holdings">Holdings</a>
+      <a href="/principal">Principal</a>
+    </div>
+    <div class="menu__group">
+      <p class="menu__label">Writing</p>
+      <a href="/notes">All notes</a>
+      <a href="/notes/domains-as-options">Domains as Options</a>
+      <a href="/notes/founding-flits">Founding Flits</a>
+    </div>
+    <div class="menu__group">
+      <p class="menu__label">Legal</p>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/legal">Imprint</a>
+    </div>
+    <div class="menu__group">
+      <p class="menu__label">Contact</p>
+      <a href="mailto:contact@flits.cc">contact@flits.cc</a>
+    </div>
+  </div>
+</div>
 
-  <div class="sep" aria-hidden="true">~~~</div>
+<div class="search" id="search" data-open="false" aria-hidden="true">
+  <div class="search__bar wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.25"/><path d="m16 16 4.5 4.5"/></svg>
+    <input type="search" id="search-input" placeholder="Search flits.cc" autocomplete="off" spellcheck="false" aria-label="Search flits.cc">
+    <div class="nav-actions">
+      <button class="icon-btn" type="button" data-search-close aria-label="Close search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="search__results wrap" id="search-results" role="region" aria-live="polite"></div>
+</div>
 
-  <section>
-    <p class="kv">DATE: 07.2026</p>
-    <p class="kv">AUTHOR: MANUEL ASBECK</p>
+<main id="main">
+
+  <div class="wrap" style="padding-top:24px">
+    <a class="back-link" href="/notes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg>All notes</a>
+  </div>
+
+  <section class="page-hero wrap">
+    <div class="page-hero__inner">
+      <p class="eyebrow"><strong>Note</strong> <span>July 2026</span></p>
+      <h1 class="h1">Domains as Options</h1>
+      <p class="lede">Why a good domain behaves less like a purchase and more like an option, and what that changes about holding one.</p>
+    </div>
   </section>
 
-  <div class="sep" aria-hidden="true">~~~</div>
+  <section class="wrap section--tight">
+    <div class="banner art--3 art--grain" role="img" aria-label="Abstract gradient"></div>
+  </section>
 
+  <div class="wrap">
+    <p class="article-meta"><span>Manuel Asbeck</span><span>July 2026</span></p>
+  </div>
+
+  <section class="wrap section--tight">
   <article class="prose">
     <p>We hold more names than we use. On a ledger it reads as an expense — a line item, renewed annually, attached to nothing. Judged as purchases, most of our domains are bad purchases.</p>
     <p>They are not purchases. What you acquire when you register a name is the right to build something under it later, at a cost fixed today. The name does nothing on its own. The option does.</p>
-
-    <div class="sep" aria-hidden="true">~~~</div>
 
     <h2>The cost of waiting</h2>
     <p>Every option has a premium, and for a domain the premium is the renewal. You pay it each year for the privilege of deciding later. The arithmetic is unremarkable:</p>
@@ -50,28 +124,88 @@
     <p>Where n is years held, r the annual renewal, and V whatever the name turns out to be worth to whoever eventually needs it — us, or someone building the thing we once described to ourselves and never built. The left side is a rounding error that compounds slowly. The right side is either zero or large.</p>
     <p>That asymmetry is the whole decision. The question is not <em>is this name worth what we are paying</em> but <em>is there a plausible world in which V exceeds a decade of renewals</em>. For a name that is short, plain and unencumbered, the answer is usually yes. For a clever one, usually no.</p>
 
-    <div class="sep" aria-hidden="true">~~~</div>
-
     <h2>What a name buys you</h2>
     <p>The more useful thing a good domain does is constrain. A vague name permits anything, which is another way of saying it directs nothing. A specific one carries a product inside it — a scope, an audience, sometimes a business model — and owning it keeps that direction cheap to walk back to.</p>
     <p>We have started projects because we held the name and got tired of looking at it unused. That sounds like a poor reason to build something. In practice it is a reasonable one: the name had survived several years of us not needing it, which is a longer test than most ideas are ever put through.</p>
-
-    <div class="sep" aria-hidden="true">~~~</div>
 
     <h2>When we let one go</h2>
     <p>Most of them never become anything. The model assumes as much, but the assumption has to be acted on, or a portfolio of options quietly becomes a pile of renewals.</p>
     <p>So once a year we read the list and ask one question of each name: if it expired tonight, would we buy it back tomorrow at the market price? If not, we let it drop. The names that survive are consistently the ones we cannot describe a replacement for.</p>
     <p>We are not domain investors — we do not buy to resell, and we have never commissioned an appraisal. We are not collectors either; a name we would not build under is not an asset, it is a subscription. What we keep is a small set of names we expect to use, and a small annual cost to keep that expectation open.</p>
   </article>
+  </section>
 
-  <div class="sep" aria-hidden="true">~~~</div>
-
-  <section>
-    <p class="kv">NAVIGATE:</p>
-    <p class="li">- <a class="md" href="/notes">[All Notes](<span class="u">/notes</span>)</a></p>
-    <p class="li">- <a class="md" href="/">[Home](<span class="u">/</span>)</a></p>
+  <section class="wrap section">
+    <div class="section-head">
+      <h2 class="h2">Keep reading</h2>
+      <a class="view-all" href="/notes">View all</a>
+    </div>
+    <div class="rail" style="--cols: 3;">
+      <a class="card" href="/notes/founding-flits">
+        <div class="card__media"><span class="art art--2 art--grain"></span></div>
+        <div class="card__body">
+          <h3 class="card__title">Founding Flits</h3>
+          <p class="card__meta"><span>Note</span><span>June 2025</span></p>
+        </div>
+      </a>
+      <a class="card" href="/principal">
+        <div class="card__media"><span class="art art--6 art--grain"></span></div>
+        <div class="card__body">
+          <h3 class="card__title">Manuel Asbeck</h3>
+          <p class="card__meta"><span>Principal</span><span>Founder &amp; Managing Director</span></p>
+        </div>
+      </a>
+      <a class="card" href="/#holdings">
+        <div class="card__media"><span class="art art--4 art--grain"></span></div>
+        <div class="card__body">
+          <h3 class="card__title">What Flits holds</h3>
+          <p class="card__meta"><span>Company</span><span>Portfolio</span></p>
+        </div>
+      </a>
+    </div>
   </section>
 
 </main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="wordmark" href="/">Flits</a>
+        <p>A holding company for digital products and software. Est. 2023.</p>
+      </div>
+      <div class="footer-col">
+        <h2>Company</h2>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#holdings">Holdings</a></li>
+          <li><a href="/principal">Principal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Writing</h2>
+        <ul>
+          <li><a href="/notes">All notes</a></li>
+          <li><a href="/notes/domains-as-options">Domains as Options</a></li>
+          <li><a href="/notes/founding-flits">Founding Flits</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Legal</h2>
+        <ul>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/legal">Imprint</a></li>
+          <li><a href="mailto:contact@flits.cc">contact@flits.cc</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Flits</span>
+      <span class="spacer">Germany / United Kingdom</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/flits.js?v=3" defer></script>
 </body>
 </html>
