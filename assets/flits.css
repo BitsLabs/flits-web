@@ -224,11 +224,16 @@ h1, h2, h3, h4 {
 .wordmark {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-size: clamp(1.0625rem, 4vw, 1.1875rem);
   font-weight: 700;
   letter-spacing: -0.032em;
   text-decoration: none;
+}
+
+.wordmark img {
+  width: auto;
+  height: 1.05em;
 }
 
 .nav-links {
