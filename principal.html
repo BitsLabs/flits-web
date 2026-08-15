@@ -13,52 +13,177 @@
 <meta name="theme-color" content="#000000">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/terminal.css?v=1">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/flits.css?v=9">
 <link rel="icon" type="image/png" href="/assets/flits-logo-inverted.png">
 <link rel="icon" type="image/png" href="/assets/flits-logo-inverted.png" media="(prefers-color-scheme: light)">
 <link rel="icon" type="image/png" href="/assets/flits-logo.png" media="(prefers-color-scheme: dark)">
 </head>
 <body>
-<main class="term">
 
-  <p class="li"><a class="md" href="/">[&lt;- Back](<span class="u">/</span>)</a></p>
+<a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="sep" aria-hidden="true">~~~</div>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="wordmark" href="/"><img src="/assets/flits-mark.png" alt="" width="10" height="18"><span>Flits</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/#holdings">Holdings</a>
+      <a href="/notes">Notes</a>
+      <a href="/principal" aria-current="page">Principal</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" type="button" data-menu aria-label="Open menu" aria-controls="menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.75" width="18" height="14.5" rx="3.5"/><path d="M9.25 4.75v14.5" stroke-linecap="round"/><path d="M6.5 4.75h2.75v14.5H6.5A3.5 3.5 0 0 1 3 15.75v-7.5a3.5 3.5 0 0 1 3.5-3.5z" fill="currentColor" stroke="none" opacity="0.9"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
 
-  <h1 class="title">Manuel Asbeck<span class="cursor" aria-hidden="true"></span></h1>
+<div class="menu" id="menu" data-open="false" aria-hidden="true">
+  <div class="menu__bar wrap">
+    <a class="wordmark" href="/"><img src="/assets/flits-mark.png" alt="" width="10" height="18"><span>Flits</span></a>
+    <div class="nav-actions">
+      <button class="icon-btn" type="button" data-menu-close aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="menu__body">
+    <div class="menu__group">
+      <p class="menu__label">Company</p>
+      <a href="/">Home</a>
+      <a href="/#holdings">Holdings</a>
+      <a href="/principal">Principal</a>
+    </div>
+    <div class="menu__group">
+      <p class="menu__label">Writing</p>
+      <a href="/notes">All notes</a>
+      <a href="/notes/domains-as-options">Domains as Options</a>
+      <a href="/notes/founding-flits">Founding Flits</a>
+    </div>
+    <div class="menu__group">
+      <p class="menu__label">Legal</p>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/legal">Imprint</a>
+    </div>
+    <div class="menu__group">
+      <p class="menu__label">Contact</p>
+      <a href="mailto:contact@flits.cc">contact@flits.cc</a>
+    </div>
+  </div>
+</div>
 
-  <div class="sep" aria-hidden="true">~~~</div>
 
-  <section>
-    <p class="kv">ROLE: FOUNDER &amp; MANAGING DIRECTOR</p>
-    <p class="kv">LOCATION: MUNICH / LONDON</p>
-    <p class="kv">EDUCATION: INFORMATION SYSTEMS, TU MUNICH</p>
-    <p class="kv">CONTACT: <a class="plain" href="mailto:contact@flits.cc">CONTACT@FLITS.CC</a></p>
+<main id="main">
+
+  <div class="wrap" style="padding-top:24px">
+    <a class="back-link" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg>Home</a>
+  </div>
+
+  <section class="page-hero wrap">
+    <div class="page-hero__inner">
+      <p class="eyebrow"><strong>Principal</strong> <span>Founder &amp; Managing Director</span></p>
+      <h1 class="display">Manuel Asbeck</h1>
+    </div>
   </section>
 
-  <div class="sep" aria-hidden="true">~~~</div>
+  <section class="wrap section--tight">
+    <div class="feature">
+      <div class="feature__media">
+        <img src="/assets/principal-flits.png" alt="Manuel Asbeck" width="1024" height="1183">
+      </div>
+      <div class="feature__body">
+        <dl class="specs" style="width:100%">
+          <div><dt>Role</dt><dd>Founder &amp; Managing Director</dd></div>
+          <div><dt>Location</dt><dd>Munich / London</dd></div>
+          <div><dt>Education</dt><dd>Information Systems, TU Munich</dd></div>
+          <div><dt>Contact</dt><dd><a href="mailto:contact@flits.cc">contact@flits.cc</a></dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
 
-  <section class="prose">
-    <figure class="frame portrait">
-      <img src="/assets/principal-flits.png" alt="Manuel Asbeck">
-    </figure>
+  <section class="wrap section--tight">
+  <div class="prose">
     <p>Manuel Asbeck founded Flits in 2023 and serves as its Managing Director and sole shareholder. He is twenty years old, based between the Munich Area and London, and studies Information Systems at the Technical University of Munich.</p>
     <p>Flits grew from a simple conviction: that the best digital companies are built with patience, and that the work of a young founder deserves a permanent home rather than a graveyard of abandoned projects. Manuel started building software at twelve years old. By the time he founded Flits, he had already shipped several consumer apps, learned what it takes to grow them, and developed a clear view of what separates ventures worth keeping from ones worth letting go.</p>
     <p>Today, Flits operates as a holding for a small family of digital products and ventures — built, owned, and stewarded for the long term. He thinks in years, not quarters, and is drawn to businesses where compounding is possible: software with loyal users, products that improve with time, and assets that reward patience.</p>
     <p>He is actively involved in every company under the Flits umbrella — not as a passive owner, but as the person responsible for building them into something worth owning.</p>
+  </div>
   </section>
 
-  <div class="sep" aria-hidden="true">~~~</div>
-
-  <section>
-    <p class="kv">NAVIGATE:</p>
-    <p class="li">- <a class="md" href="/">[Home](<span class="u">/</span>)</a></p>
-    <p class="li">- <a class="md" href="/notes">[Notes](<span class="u">/notes</span>)</a></p>
-    <p class="li">- <a class="md" href="/privacy">[Privacy Policy](<span class="u">/privacy</span>)</a></p>
-    <p class="li">- <a class="md" href="/legal">[Imprint](<span class="u">/legal</span>)</a></p>
+  <section class="wrap section">
+    <div class="section-head">
+      <h2 class="h2">Written by Manuel</h2>
+      <a class="view-all" href="/notes">View all</a>
+    </div>
+    <div class="rail" style="--cols: 3;">
+      <a class="card" href="/notes/domains-as-options">
+        <div class="card__media"><span class="art art--3 art--grain"></span></div>
+        <div class="card__body">
+          <h3 class="card__title">Domains as Options</h3>
+          <p class="card__meta"><span>Note</span><span>July 2026</span></p>
+        </div>
+      </a>
+      <a class="card" href="/notes/founding-flits">
+        <div class="card__media"><span class="art art--2 art--grain"></span></div>
+        <div class="card__body">
+          <h3 class="card__title">Founding Flits</h3>
+          <p class="card__meta"><span>Note</span><span>June 2025</span></p>
+        </div>
+      </a>
+      <a class="card" href="/#holdings">
+        <div class="card__media"><span class="art art--4 art--grain"></span></div>
+        <div class="card__body">
+          <h3 class="card__title">What Flits holds</h3>
+          <p class="card__meta"><span>Company</span><span>Portfolio</span></p>
+        </div>
+      </a>
+    </div>
   </section>
 
 </main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="wordmark" href="/"><img src="/assets/flits-mark.png" alt="" width="10" height="18"><span>Flits</span></a>
+        <p>A holding company for digital products and software. Est. 2023.</p>
+      </div>
+      <div class="footer-col">
+        <h2>Company</h2>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#holdings">Holdings</a></li>
+          <li><a href="/principal">Principal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Writing</h2>
+        <ul>
+          <li><a href="/notes">All notes</a></li>
+          <li><a href="/notes/domains-as-options">Domains as Options</a></li>
+          <li><a href="/notes/founding-flits">Founding Flits</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Legal</h2>
+        <ul>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/legal">Imprint</a></li>
+          <li><a href="mailto:contact@flits.cc">contact@flits.cc</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Flits</span>
+      <span class="spacer">Germany / United Kingdom</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/flits.js?v=6" defer></script>
 </body>
 </html>

@@ -13,32 +13,90 @@
 <meta name="theme-color" content="#000000">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/terminal.css?v=1">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/flits.css?v=9">
 <link rel="icon" type="image/png" href="/assets/flits-logo-inverted.png">
 <link rel="icon" type="image/png" href="/assets/flits-logo-inverted.png" media="(prefers-color-scheme: light)">
 <link rel="icon" type="image/png" href="/assets/flits-logo.png" media="(prefers-color-scheme: dark)">
 </head>
 <body>
-<main class="term">
 
-  <p class="li"><a class="md" href="/">[&lt;- Back](<span class="u">/</span>)</a></p>
+<a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="sep" aria-hidden="true">~~~</div>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="wordmark" href="/"><img src="/assets/flits-mark.png" alt="" width="10" height="18"><span>Flits</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/#holdings">Holdings</a>
+      <a href="/notes">Notes</a>
+      <a href="/principal">Principal</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" type="button" data-menu aria-label="Open menu" aria-controls="menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.75" width="18" height="14.5" rx="3.5"/><path d="M9.25 4.75v14.5" stroke-linecap="round"/><path d="M6.5 4.75h2.75v14.5H6.5A3.5 3.5 0 0 1 3 15.75v-7.5a3.5 3.5 0 0 1 3.5-3.5z" fill="currentColor" stroke="none" opacity="0.9"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
 
-  <h1 class="title">Privacy Policy<span class="cursor" aria-hidden="true"></span></h1>
+<div class="menu" id="menu" data-open="false" aria-hidden="true">
+  <div class="menu__bar wrap">
+    <a class="wordmark" href="/"><img src="/assets/flits-mark.png" alt="" width="10" height="18"><span>Flits</span></a>
+    <div class="nav-actions">
+      <button class="icon-btn" type="button" data-menu-close aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="menu__body">
+    <div class="menu__group">
+      <p class="menu__label">Company</p>
+      <a href="/">Home</a>
+      <a href="/#holdings">Holdings</a>
+      <a href="/principal">Principal</a>
+    </div>
+    <div class="menu__group">
+      <p class="menu__label">Writing</p>
+      <a href="/notes">All notes</a>
+      <a href="/notes/domains-as-options">Domains as Options</a>
+      <a href="/notes/founding-flits">Founding Flits</a>
+    </div>
+    <div class="menu__group">
+      <p class="menu__label">Legal</p>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/legal">Imprint</a>
+    </div>
+    <div class="menu__group">
+      <p class="menu__label">Contact</p>
+      <a href="mailto:contact@flits.cc">contact@flits.cc</a>
+    </div>
+  </div>
+</div>
 
-  <div class="sep" aria-hidden="true">~~~</div>
 
-  <section>
-    <p class="kv">OPERATOR: TROUT UG (HAFTUNGSBESCHRÄNKT) / FLITS LTD</p>
-    <p class="kv">SCOPE: ALL FLITS APPS &amp; SERVICES</p>
-    <p class="kv">CONTACT: <a class="plain" href="mailto:contact@flits.cc">CONTACT@FLITS.CC</a></p>
-    <p class="kv">LAST UPDATED: 24.03.2026</p>
+<main id="main">
+
+  <div class="wrap" style="padding-top:24px">
+    <a class="back-link" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg>Home</a>
+  </div>
+
+  <section class="page-hero wrap">
+    <div class="page-hero__inner">
+      <h1 class="h1">Privacy Policy</h1>
+    </div>
   </section>
 
-  <div class="sep" aria-hidden="true">~~~</div>
+  <section class="wrap section--tight">
+    <dl class="specs">
+      <div><dt>Operator</dt><dd>Trout UG (haftungsbeschränkt) / Flits Ltd</dd></div>
+      <div><dt>Scope</dt><dd>All Flits apps &amp; services</dd></div>
+      <div><dt>Contact</dt><dd><a href="mailto:contact@flits.cc">contact@flits.cc</a></dd></div>
+      <div><dt>Last updated</dt><dd>24.03.2026</dd></div>
+    </dl>
+  </section>
 
+  <section class="wrap section--tight">
   <section class="prose">
     <h2>I. Introduction</h2>
     <p>Thank you for using services of Trout UG (limited liability) (“we,” “our,” or “us”). Your privacy is important to us, and we are committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application, as well as your rights regarding your data.</p>
@@ -46,8 +104,6 @@
     <p>This Privacy Policy applies to all users of our apps, regardless of location, and complies with applicable data protection laws, including the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA), where applicable.</p>
     <p>If you have any questions or concerns about our privacy practices, please contact us at contact@flits.cc.</p>
   </section>
-
-  <div class="sep" aria-hidden="true">~~~</div>
 
   <section class="prose">
     <h2>II. Information We Collect</h2>
@@ -74,8 +130,6 @@
     <p>Each type of information is collected in a lawful, fair, and transparent manner, used solely to enhance the quality and security of our service. Your privacy remains a top priority, and we ensure that any data collected is managed in compliance with applicable legal standards and regulations. For more information on which data is actually collected, we refer you to this app’s App Store page.</p>
   </section>
 
-  <div class="sep" aria-hidden="true">~~~</div>
-
   <section class="prose">
     <h2>III. How We Use Your Information</h2>
     <p>We use the information we collect to provide, improve, and protect our service while ensuring compliance with legal obligations. Specifically, we use your data for the following purposes:</p>
@@ -96,8 +150,6 @@
     <p>To conduct research and development for new features and enhancements.</p>
     <p>To facilitate advertising and marketing efforts, where applicable and in accordance with user preferences.</p>
   </section>
-
-  <div class="sep" aria-hidden="true">~~~</div>
 
   <section class="prose">
     <h2>IV. Sharing of Information</h2>
@@ -121,8 +173,6 @@
     <p>We take all necessary precautions to ensure that any shared data is handled securely and in compliance with relevant privacy laws.</p>
   </section>
 
-  <div class="sep" aria-hidden="true">~~~</div>
-
   <section class="prose">
     <h2>V. User Rights &amp; Choices</h2>
     <p>We respect your rights regarding your personal data and provide various options to manage your information. Depending on your location and applicable laws, you may have the following rights:</p>
@@ -141,8 +191,6 @@
     <p>To exercise any of these rights, please contact us at contact@flits.cc. We may need to verify your identity before processing requests.</p>
   </section>
 
-  <div class="sep" aria-hidden="true">~~~</div>
-
   <section class="prose">
     <h2>VI. Third-Party Services and Links</h2>
     <p>Our service may contain links to third-party websites, applications, or services. Additionally, we may integrate third-party tools or APIs that collect and process data independently.</p>
@@ -152,8 +200,6 @@
     <p>If our service uses third-party analytics, advertising, or authentication providers, we ensure compliance with relevant regulations and provide transparency about how these services operate.</p>
   </section>
 
-  <div class="sep" aria-hidden="true">~~~</div>
-
   <section class="prose">
     <h2>VII. Children’s Privacy</h2>
     <p>Our services are not intended for use by children under the age of 13, or the minimum age of digital consent in your jurisdiction (e.g., 16 in the EU under GDPR). We do not knowingly collect, store, or process any personal data from children without verifiable parental or guardian consent.</p>
@@ -161,8 +207,6 @@
     <p>Parents or legal guardians who believe their child may have provided us with personal information can contact us at contact@flits.cc to request deletion and account closure.</p>
     <p>In jurisdictions where additional protections apply (e.g., COPPA in the United States or GDPR-K in Europe), we comply with all applicable laws regarding the handling and processing of children’s data.</p>
   </section>
-
-  <div class="sep" aria-hidden="true">~~~</div>
 
   <section class="prose">
     <h2>VIII. Changes to This Privacy Policy</h2>
@@ -172,8 +216,6 @@
     <p>Providing additional notice (e.g., via email or in-app notifications) where required by law.</p>
     <p>We encourage you to review this Privacy Policy periodically to stay informed about how we protect your information. Your continued use of our service after any updates constitutes acceptance of the revised policy.</p>
   </section>
-
-  <div class="sep" aria-hidden="true">~~~</div>
 
   <section class="prose">
     <h2>IX. Data Retention</h2>
@@ -186,8 +228,6 @@
     <p>When data is no longer needed for the purposes stated above, we either delete it securely, anonymize it for statistical or research use, or isolate it from further processing in line with applicable laws. We regularly review our data retention practices to ensure that we only retain personal data for as long as necessary and justified.</p>
     <p>If you request deletion of your data or closure of your account, we will follow up by removing or anonymizing your data within a reasonable timeframe, subject to legal obligations (such as tax and financial record-keeping) or overriding legitimate interests (such as fraud prevention or dispute resolution).</p>
   </section>
-
-  <div class="sep" aria-hidden="true">~~~</div>
 
   <section class="prose">
     <h2>X. International Data Transfers</h2>
@@ -204,8 +244,6 @@
     <p>Minimizing data to the extent necessary for the specified purpose.</p>
     <p>By using our apps, you acknowledge and agree that your information may be transferred to and processed in countries outside of your jurisdiction, subject to appropriate safeguards in compliance with applicable data protection laws.</p>
   </section>
-
-  <div class="sep" aria-hidden="true">~~~</div>
 
   <section class="prose">
     <h2>XI. Tracking Technologies and Analytics Tools</h2>
@@ -242,8 +280,6 @@
     <p>Additionally, for users in jurisdictions with "Do Not Track" or equivalent laws (e.g., CCPA in California), we honor such requests in accordance with legal obligations and technical feasibility.</p>
   </section>
 
-  <div class="sep" aria-hidden="true">~~~</div>
-
   <section class="prose">
     <h2>XII. App Permissions</h2>
     <p>Certain features within our apps may request access to specific system permissions or device components in order to function properly. These permissions are only used when necessary to enable key app functionalities and are never used to collect information unrelated to the stated purpose.</p>
@@ -255,8 +291,6 @@
     <p>Bluetooth or Nearby Devices: In very specific apps where local peer-to-peer communication is enabled (e.g., device-based authentication), we may ask for this permission—only with transparent explanation and user consent.</p>
     <p>All permissions are requested just-in-time and explicitly, and you may decline or disable them at any time via your device settings. Our apps are designed to handle such revocations gracefully, without affecting unrelated functionality.</p>
   </section>
-
-  <div class="sep" aria-hidden="true">~~~</div>
 
   <section class="prose">
     <h2>XIII. Data Security</h2>
@@ -271,8 +305,6 @@
     <p>Although no system is completely immune to risks, we are committed to implementing up-to-date safeguards in line with industry best practices and regulatory standards such as ISO/IEC 27001, GDPR, and CCPA.</p>
     <p>If you suspect a security issue or have discovered a vulnerability in our app, please report it immediately to contact@flits.cc.</p>
   </section>
-
-  <div class="sep" aria-hidden="true">~~~</div>
 
   <section class="prose">
     <h2>XIV. Data Breach Notification</h2>
@@ -290,8 +322,6 @@
     <p>We are legally obligated under the General Data Protection Regulation (GDPR) and California Consumer Privacy Act (CCPA) to notify users and, where applicable, supervisory authorities (e.g., the German Federal Data Protection Authority) within a strict timeframe.</p>
     <p>We maintain a data breach response plan and conduct periodic simulations to ensure readiness and minimize risk in real-world scenarios.</p>
   </section>
-
-  <div class="sep" aria-hidden="true">~~~</div>
 
   <section class="prose">
     <h2>XV. Scope and Applicability</h2>
@@ -313,25 +343,56 @@
     <p>If you are unsure whether a particular product or app falls under this Privacy Policy, you may refer to the app's listing on the App Store or contact us at contact@flits.cc for clarification.</p>
   </section>
 
-  <div class="sep" aria-hidden="true">~~~</div>
-
   <section class="prose">
     <h2>XVI. Contact Information</h2>
     <p>If you have any questions, concerns, or requests regarding this Privacy Policy or how we handle your data, you can contact us at:</p>
-    <p class="kv">EMAIL: <a class="plain" href="mailto:contact@flits.cc">CONTACT@FLITS.CC</a></p>
+    <p class="kv">EMAIL: <a href="mailto:contact@flits.cc">CONTACT@FLITS.CC</a></p>
     <p class="kv">MAIL: TROUT UG (LIMITED LIABILITY), POSTFACH 187, 94402 LANDAU A. D. ISAR, GERMANY</p>
-    <br>
     <p>We take privacy matters seriously and will respond to inquiries as soon as possible.</p>
   </section>
-
-  <div class="sep" aria-hidden="true">~~~</div>
-
-  <section>
-    <p class="kv">NAVIGATE:</p>
-    <p class="li">- <a class="md" href="/">[Home](<span class="u">/</span>)</a></p>
-    <p class="li">- <a class="md" href="/legal">[Imprint](<span class="u">/legal</span>)</a></p>
   </section>
 
 </main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="wordmark" href="/"><img src="/assets/flits-mark.png" alt="" width="10" height="18"><span>Flits</span></a>
+        <p>A holding company for digital products and software. Est. 2023.</p>
+      </div>
+      <div class="footer-col">
+        <h2>Company</h2>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#holdings">Holdings</a></li>
+          <li><a href="/principal">Principal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Writing</h2>
+        <ul>
+          <li><a href="/notes">All notes</a></li>
+          <li><a href="/notes/domains-as-options">Domains as Options</a></li>
+          <li><a href="/notes/founding-flits">Founding Flits</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Legal</h2>
+        <ul>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/legal">Imprint</a></li>
+          <li><a href="mailto:contact@flits.cc">contact@flits.cc</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Flits</span>
+      <span class="spacer">Germany / United Kingdom</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/flits.js?v=6" defer></script>
 </body>
 </html>

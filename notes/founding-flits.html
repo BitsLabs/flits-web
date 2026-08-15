@@ -13,36 +13,96 @@
 <meta name="theme-color" content="#000000">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/terminal.css?v=1">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/flits.css?v=9">
+<link rel="stylesheet" href="/assets/katex/katex.min.css">
 <link rel="icon" type="image/png" href="/assets/flits-logo-inverted.png">
 <link rel="icon" type="image/png" href="/assets/flits-logo-inverted.png" media="(prefers-color-scheme: light)">
 <link rel="icon" type="image/png" href="/assets/flits-logo.png" media="(prefers-color-scheme: dark)">
 </head>
 <body>
-<main class="term">
 
-  <p class="li"><a class="md" href="/notes">[&lt;- Back](<span class="u">/notes</span>)</a></p>
+<a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="sep" aria-hidden="true">~~~</div>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="wordmark" href="/"><img src="/assets/flits-mark.png" alt="" width="10" height="18"><span>Flits</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/#holdings">Holdings</a>
+      <a href="/notes" aria-current="page">Notes</a>
+      <a href="/principal">Principal</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" type="button" data-menu aria-label="Open menu" aria-controls="menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.75" width="18" height="14.5" rx="3.5"/><path d="M9.25 4.75v14.5" stroke-linecap="round"/><path d="M6.5 4.75h2.75v14.5H6.5A3.5 3.5 0 0 1 3 15.75v-7.5a3.5 3.5 0 0 1 3.5-3.5z" fill="currentColor" stroke="none" opacity="0.9"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
 
-  <h1 class="title">Founding Flits<span class="cursor" aria-hidden="true"></span></h1>
+<div class="menu" id="menu" data-open="false" aria-hidden="true">
+  <div class="menu__bar wrap">
+    <a class="wordmark" href="/"><img src="/assets/flits-mark.png" alt="" width="10" height="18"><span>Flits</span></a>
+    <div class="nav-actions">
+      <button class="icon-btn" type="button" data-menu-close aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="menu__body">
+    <div class="menu__group">
+      <p class="menu__label">Company</p>
+      <a href="/">Home</a>
+      <a href="/#holdings">Holdings</a>
+      <a href="/principal">Principal</a>
+    </div>
+    <div class="menu__group">
+      <p class="menu__label">Writing</p>
+      <a href="/notes">All notes</a>
+      <a href="/notes/domains-as-options">Domains as Options</a>
+      <a href="/notes/founding-flits">Founding Flits</a>
+    </div>
+    <div class="menu__group">
+      <p class="menu__label">Legal</p>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/legal">Imprint</a>
+    </div>
+    <div class="menu__group">
+      <p class="menu__label">Contact</p>
+      <a href="mailto:contact@flits.cc">contact@flits.cc</a>
+    </div>
+  </div>
+</div>
 
-  <div class="sep" aria-hidden="true">~~~</div>
 
-  <section>
-    <p class="kv">DATE: 06.2025</p>
-    <p class="kv">AUTHOR: MANUEL ASBECK</p>
+<main id="main">
+
+  <div class="wrap" style="padding-top:24px">
+    <a class="back-link" href="/notes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg>All notes</a>
+  </div>
+
+  <section class="page-hero wrap">
+    <div class="page-hero__inner">
+      <p class="eyebrow"><strong>Note</strong> <span>June 2025</span></p>
+      <h1 class="h1">Founding Flits</h1>
+      <p class="lede">A short introduction to what we are, what we aren&#39;t, and what we plan to be in ten years.</p>
+    </div>
   </section>
 
-  <div class="sep" aria-hidden="true">~~~</div>
+  <section class="wrap section--tight">
+    <div class="banner art--2 art--grain" role="img" aria-label="Abstract gradient"></div>
+  </section>
 
+  <div class="wrap">
+    <p class="article-meta"><span>Manuel Asbeck</span><span>June 2025</span></p>
+  </div>
+
+  <section class="wrap section--tight">
   <article class="prose">
     <p>Flits began as an answer to a question we kept bumping into: what do you do with a good idea that isn't a startup?</p>
     <p>Most capital structures assume the answer is: make it one. Raise a round, grow fast, reach liquidity. That path suits a certain kind of company — one where speed is the moat, where the market rewards whoever arrives first. We have backed a few of those. But most interesting ideas don't work like that.</p>
     <p>Some companies are better small. Some assets are better held than flipped. Some software is better finished than endlessly iterated. The holding company structure exists precisely because the alternatives — the fund model, the startup model, the agency model — each impose their own timeline on the underlying work. A fund has a return window. A startup has a growth expectation. A holding company, at least this one, has neither.</p>
-
-    <div class="sep" aria-hidden="true">~~~</div>
 
     <h2>What we hold</h2>
     <p>Flits holds three things.</p>
@@ -50,34 +110,95 @@
     <p>The second is minority stakes in companies we find worth backing. We take no board seats and apply no pressure for quick returns. We try to be useful when asked and invisible when not.</p>
     <p>The third is digital assets — primarily domains — that we think are either undervalued or directionally useful. A good domain is closer to a seed option than a vanity purchase: cheap to hold, specific enough to guide a future product, and rare enough that waiting changes the opportunity set.</p>
 
-    <div class="sep" aria-hidden="true">~~~</div>
-
     <h2>Why slow is a strategy</h2>
     <p>Most of the value in long-duration assets lives in the tail. The first year of owning something rarely tells you what you need to know. A discounted cash flow makes this visible:</p>
-    <pre class="code">        T
-  V  =  Σ   C_t / (1+r)^t   +   V_T / (1+r)^T
-       t=1</pre>
-    <p>The terminal term — V_T / (1+r)^T — is where most of the value sits for anything worth holding past a decade. The implication is that the honest question isn't <em>what is this worth now</em> but <em>what does this become given enough time and the right conditions</em>.</p>
+    <div class="math">$$V \;=\; \sum_{t=1}^{T} \frac{C_t}{(1+r)^t} \;+\; \frac{V_T}{(1+r)^T}$$</div>
+    <p>The terminal term — \(V_T/(1+r)^T\) — is where most of the value sits for anything worth holding past a decade. The implication is that the honest question isn't <em>what is this worth now</em> but <em>what does this become given enough time and the right conditions</em>.</p>
     <p>That is not a comfortable question to ask inside a quarterly-reporting structure. It is a comfortable question to ask inside a holding company with no outside investors and a long enough runway.</p>
     <figure class="frame">
       <img src="https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=1200&amp;q=80" alt="Still water at dawn">
     </figure>
 
-    <div class="sep" aria-hidden="true">~~~</div>
-
     <h2>What we are not</h2>
     <p>We are not a venture fund. We do not have a mandate to deploy capital on a schedule or return it on another. We are not a studio — we do not incubate companies on behalf of others. We are not an agency — we do not trade time for fees.</p>
     <p>We are a holding company that happens to have opinions about what is worth building, buying, and keeping. The plan is deliberately slow, the portfolio deliberately small, and the ambitions — where they exist — deliberately long.</p>
   </article>
+  </section>
 
-  <div class="sep" aria-hidden="true">~~~</div>
-
-  <section>
-    <p class="kv">NAVIGATE:</p>
-    <p class="li">- <a class="md" href="/notes">[All Notes](<span class="u">/notes</span>)</a></p>
-    <p class="li">- <a class="md" href="/">[Home](<span class="u">/</span>)</a></p>
+  <section class="wrap section">
+    <div class="section-head">
+      <h2 class="h2">Keep reading</h2>
+      <a class="view-all" href="/notes">View all</a>
+    </div>
+    <div class="rail" style="--cols: 3;">
+      <a class="card" href="/notes/domains-as-options">
+        <div class="card__media"><span class="art art--3 art--grain"></span></div>
+        <div class="card__body">
+          <h3 class="card__title">Domains as Options</h3>
+          <p class="card__meta"><span>Note</span><span>July 2026</span></p>
+        </div>
+      </a>
+      <a class="card" href="/principal">
+        <div class="card__media"><span class="art art--6 art--grain"></span></div>
+        <div class="card__body">
+          <h3 class="card__title">Manuel Asbeck</h3>
+          <p class="card__meta"><span>Principal</span><span>Founder &amp; Managing Director</span></p>
+        </div>
+      </a>
+      <a class="card" href="/#holdings">
+        <div class="card__media"><span class="art art--4 art--grain"></span></div>
+        <div class="card__body">
+          <h3 class="card__title">What Flits holds</h3>
+          <p class="card__meta"><span>Company</span><span>Portfolio</span></p>
+        </div>
+      </a>
+    </div>
   </section>
 
 </main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="wordmark" href="/"><img src="/assets/flits-mark.png" alt="" width="10" height="18"><span>Flits</span></a>
+        <p>A holding company for digital products and software. Est. 2023.</p>
+      </div>
+      <div class="footer-col">
+        <h2>Company</h2>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#holdings">Holdings</a></li>
+          <li><a href="/principal">Principal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Writing</h2>
+        <ul>
+          <li><a href="/notes">All notes</a></li>
+          <li><a href="/notes/domains-as-options">Domains as Options</a></li>
+          <li><a href="/notes/founding-flits">Founding Flits</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Legal</h2>
+        <ul>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/legal">Imprint</a></li>
+          <li><a href="mailto:contact@flits.cc">contact@flits.cc</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Flits</span>
+      <span class="spacer">Germany / United Kingdom</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/flits.js?v=6" defer></script>
+<script src="/assets/katex/katex.min.js" defer></script>
+<script src="/assets/katex/auto-render.min.js" defer></script>
+<script src="/assets/math.js?v=1" defer></script>
 </body>
 </html>
