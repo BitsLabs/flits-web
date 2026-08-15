@@ -679,10 +679,17 @@ a.panel:hover {
 
 .page-hero__inner {
   max-width: 860px;
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: clamp(16px, 2.4vw, 24px);
 }
+
+.page-hero .eyebrow { justify-content: center; }
+
+.page-hero .lede { max-width: 680px; }
 
 /* ---------------------------------------------------------------- gradient art */
 
@@ -831,6 +838,7 @@ a.panel:hover {
 
 .prose {
   max-width: 44rem;
+  margin-inline: auto;
   font-size: 1rem;
   line-height: 1.65;
   letter-spacing: -0.011em;
@@ -937,6 +945,7 @@ pre.code {
 .article-meta {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 8px 24px;
   padding-bottom: clamp(24px, 3vw, 40px);
   font-size: 0.875rem;
