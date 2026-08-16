@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Domains as Options · Flits</title>
-<meta name="description" content="Why a good domain behaves less like a purchase and more like an option, and what that changes about holding one.">
-<link rel="canonical" href="https://flits.cc/notes/domains-as-options">
-<meta property="og:title" content="Domains as Options · Flits">
-<meta property="og:description" content="Why a good domain behaves less like a purchase and more like an option, and what that changes about holding one.">
-<meta property="og:url" content="https://flits.cc/notes/domains-as-options">
+<title>Borrowed Distribution · Flits</title>
+<meta name="description" content="Every consumer app is a tenant. What it costs to build on a channel somebody else owns, and why the rent is charged in years rather than percent.">
+<link rel="canonical" href="https://flits.cc/notes/borrowed-distribution">
+<meta property="og:title" content="Borrowed Distribution · Flits">
+<meta property="og:description" content="Every consumer app is a tenant. What it costs to build on a channel somebody else owns, and why the rent is charged in years rather than percent.">
+<meta property="og:url" content="https://flits.cc/notes/borrowed-distribution">
 <meta property="og:type" content="article">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,43 +88,40 @@
 
   <section class="page-hero wrap">
     <div class="page-hero__inner">
-      <p class="eyebrow"><strong>Note</strong> <span>July 2026</span></p>
-      <h1 class="h1">Domains as Options</h1>
-      <p class="lede">Why a good domain behaves less like a purchase and more like an option, and what that changes about holding one.</p>
+      <p class="eyebrow"><strong>Note</strong> <span>November 2023</span></p>
+      <h1 class="h1">Borrowed Distribution</h1>
+      <p class="lede">Every consumer app is a tenant. What it costs to build on a channel somebody else owns, and why the rent is charged in years rather than percent.</p>
     </div>
   </section>
 
   <section class="wrap section--tight">
-    <div class="banner art--3 art--grain" role="img" aria-label="Abstract gradient"></div>
+    <div class="banner art--4 art--grain" role="img" aria-label="Abstract gradient"></div>
   </section>
 
   <div class="wrap">
-    <p class="article-meta"><span>Manuel Asbeck</span><span>July 2026</span></p>
+    <p class="article-meta"><span>Manuel Asbeck</span><span>November 2023</span></p>
   </div>
 
   <section class="wrap section--tight">
   <article class="prose">
-    <p>We hold more names than we use. On a ledger it reads as an expense: a line item, renewed annually, attached to nothing. Judged as purchases, most of our domains are bad purchases.</p>
-    <p>They are not purchases. What you acquire when you register a name is the right to build something under it later, at a cost fixed today. The name does nothing on its own. The option does.</p>
+    <p>The first thing anyone notices about the App Store is the thirty percent. It is the wrong number to worry about. Thirty percent is a price, it is written down, and you can decide in advance whether the remaining seventy is a business. What is not written down anywhere is the rest of the arrangement: that the shelf, the search results, the payment relationship and the right to be installed at all belong to somebody else, and are lent to you on terms that can be rewritten without your agreement.</p>
+    <p>That is not a complaint. The alternative, building your own distribution from nothing, is so much more expensive that almost nobody starting out should choose it. It is simply worth being honest that what looks like owning a product is often renting a channel, and that the rent is not really charged as a percentage. It is charged in the probability that the terms change.</p>
 
-    <h2>The cost of waiting</h2>
-    <p>Every option has a premium, and for a domain the premium is the renewal. You pay it each year for the privilege of deciding later. The arithmetic is unremarkable:</p>
-    <div class="math">$$\begin{aligned}
-\text{cost} \;&= n\,r \\[2pt]
-\text{value} \;&= \max\!\left(0,\; V - n\,r\right)
-\end{aligned}$$</div>
-    <p class="math-note">Cost is bounded and known; value is unbounded and unknown.</p>
-    <p>Where \(n\) is years held, \(r\) the annual renewal, and \(V\) whatever the name turns out to be worth to whoever eventually needs it, whether that is us or someone building the thing we once described to ourselves and never built. The left side is a rounding error that compounds slowly. The right side is either zero or large.</p>
-    <p>That asymmetry is the whole decision. The question is not <em>is this name worth what we are paying</em> but <em>is there a plausible world in which \(V\) exceeds a decade of renewals</em>. For a name that is short, plain and unencumbered, the answer is usually yes. For a clever one, usually no.</p>
+    <h2>What dependence actually costs</h2>
+    <p>Suppose in any given year there is some chance that the channel you depend on does something that materially hurts: a ranking change, a policy that outlaws a feature you built on, a review process that suddenly reads your category differently, a competing first-party app shipped in the operating system. Call that probability \(q\). The chance of getting through \(t\) years untouched is:</p>
+    <div class="math">$$P(\text{survive } t) \;=\; (1-q)^{t}$$</div>
+    <p class="math-note">A small annual risk is not a small risk once it is compounded over a decade.</p>
+    <p>The numbers are unkind. At a ten percent annual chance, a decade of dependence carries roughly a thirty-five percent chance of arriving intact. At twenty percent, which is not unrealistic for anything sitting close to a platform's own ambitions, it is about eleven. Nothing has to go badly wrong in a particular year for the tail to be thin. It just has to be possible every year.</p>
+    <p>Two things follow. The first is that channel risk is a property of duration, so it changes the kind of product worth building, not merely the marketing. A product that has to run for ten years to be worth building is a different bet than the same product with a payback measured in months. The second is that \(q\) is not fixed. It rises the closer you sit to whatever the platform intends to do itself, and falls the more boring and self-contained your product is. Being uninteresting to your landlord is a real form of insurance.</p>
 
-    <h2>What a name buys you</h2>
-    <p>The more useful thing a good domain does is constrain. A vague name permits anything, which is another way of saying it directs nothing. A specific one carries a product inside it: a scope, an audience, sometimes a business model. Owning it keeps that direction cheap to walk back to.</p>
-    <p>We have started projects because we held the name and got tired of looking at it unused. That sounds like a poor reason to build something. In practice it is a reasonable one: the name had survived several years of us not needing it, which is a longer test than most ideas are ever put through.</p>
+    <h2>Rent paid in permission</h2>
+    <p>The part that costs most is rarely the money. It is that permission has to be asked for repeatedly, and the asking has a variance you do not control. A release can sit in review while a launch date passes. A feature can be approved for two years and then not. The correct response is not indignation, it is inventory: knowing which parts of your product exist at somebody else's discretion, and not letting that set grow quietly.</p>
+    <p>So we try to keep a small number of things ours regardless of what any platform decides. Whoever the customer is, and a way to reach them that does not route through a store. The domain, so that an address we have published for years keeps working. The data, in a form that can leave. None of that produces growth on its own. All of it means a bad month is a bad month rather than the end.</p>
 
-    <h2>When we let one go</h2>
-    <p>Most of them never become anything. The model assumes as much, but the assumption has to be acted on, or a portfolio of options quietly becomes a pile of renewals.</p>
-    <p>So once a year we read the list and ask one question of each name: if it expired tonight, would we buy it back tomorrow at the market price? If not, we let it drop. The names that survive are consistently the ones we cannot describe a replacement for.</p>
-    <p>We are not domain investors; we do not buy to resell, and we have never commissioned an appraisal. We are not collectors either; a name we would not build under is not an asset, it is a subscription. What we keep is a small set of names we expect to use, and a small annual cost to keep that expectation open.</p>
+    <h2>The version of this I believe</h2>
+    <p>Borrowed distribution is worth borrowing. It is the reason one person can put something in front of millions of people without a sales team, and dismissing it as a trap is the kind of purity that produces no users at all. The mistake is not using the channel. The mistake is building as though the channel were an asset you hold rather than one you rent, and then being surprised when the terms change.</p>
+    <p>Practically, that means a few unexciting rules. Assume the channel changes at least once in any decade, and check that the product still means something if it does. Do not build a core mechanic on a permission that is granted by policy rather than by physics. Keep the direct relationship, even when it is smaller and slower than the borrowed one, because it is the part that survives.</p>
+    <p>The way to think about it is that distribution you borrow buys you time, and time is exactly the thing you should be spending on building something you own. Companies that forget the second half of that sentence do very well for a while, and then discover that everything they built was standing on ground rented by the year.</p>
   </article>
   </section>
 
@@ -134,6 +131,13 @@
       <a class="view-all" href="/notes">View all</a>
     </div>
     <div class="rail" style="--cols: 3;">
+      <a class="card" href="/notes/the-price-of-a-promise">
+        <div class="card__media"><span class="art art--6 art--grain"></span></div>
+        <div class="card__body">
+          <h3 class="card__title">The Price of a Promise</h3>
+          <p class="card__meta"><span>Note</span><span>September 2024</span></p>
+        </div>
+      </a>
       <a class="card" href="/notes/founding-flits">
         <div class="card__media"><span class="art art--2 art--grain"></span></div>
         <div class="card__body">
@@ -141,18 +145,11 @@
           <p class="card__meta"><span>Note</span><span>June 2025</span></p>
         </div>
       </a>
-      <a class="card" href="/principal">
-        <div class="card__media"><span class="art art--6 art--grain"></span></div>
+      <a class="card" href="/#portfolio">
+        <div class="card__media"><span class="art art--1 art--grain"></span></div>
         <div class="card__body">
-          <h3 class="card__title">Manuel Asbeck</h3>
-          <p class="card__meta"><span>Principal</span><span>Founder &amp; Managing Director</span></p>
-        </div>
-      </a>
-      <a class="card" href="/notes/software-that-finishes">
-        <div class="card__media"><span class="art art--5 art--grain"></span></div>
-        <div class="card__body">
-          <h3 class="card__title">Software That Finishes</h3>
-          <p class="card__meta"><span>Note</span><span>August 2026</span></p>
+          <h3 class="card__title">What Flits builds</h3>
+          <p class="card__meta"><span>Company</span><span>Portfolio</span></p>
         </div>
       </a>
     </div>
