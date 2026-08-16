@@ -1127,13 +1127,10 @@ main { animation: page-in 0.36s var(--ease) both; }
   margin-top: 1.8em;
   /* Wide formulas scroll sideways. overflow-y has to be stated explicitly:
      leaving it visible makes it compute to auto next to an auto overflow-x,
-     which let these boxes scroll a couple of stray pixels vertically off
-     KaTeX's strut heights. The padding lives here rather than on
-     .katex-display so it sits inside the scroll container instead of adding
-     to its scroll height. */
+     which let these boxes scroll a few stray pixels vertically off KaTeX's
+     strut heights. */
   overflow-x: auto;
   overflow-y: hidden;
-  padding-block: 4px;
   overscroll-behavior-inline: contain;
   scrollbar-width: none;
 }
@@ -1142,6 +1139,10 @@ main { animation: page-in 0.36s var(--ease) both; }
 
 .math .katex-display {
   margin: 0;
+  /* KaTeX renders a little outside this box, so the padding has to sit on it
+     rather than on .math: padding on the scroll container itself grows the
+     scroll height with the client height and absorbs nothing. */
+  padding-block: 8px;
 }
 
 .katex { color: var(--math-fg); }
