@@ -1,7 +1,12 @@
 /* Flits — design system
-   Black canvas, tight grotesque type, media cards, pill buttons. */
+   Black canvas, tight grotesque type, media cards, pill buttons.
+   Ships in dark and light; the palette follows the device setting. */
 
 /* ---------------------------------------------------------------- tokens */
+
+/* Dark is the base palette. Every colour below is overridden in the
+   prefers-color-scheme: light block — nothing else in this file hardcodes
+   a black or a white. */
 
 :root {
   --bg: #000000;
@@ -13,6 +18,23 @@
   --surface: #0e0e0e;
   --surface-2: #171717;
 
+  /* translucent header once scrolled */
+  --header-bg: rgba(0, 0, 0, 0.72);
+  /* soft hover wash on ghost buttons and nav pills */
+  --hover-soft: rgba(255, 255, 255, 0.08);
+
+  /* reversed pair — primary button, selection, skip link */
+  --contrast-bg: #ffffff;
+  --contrast-fg: #000000;
+  --contrast-bg-hover: #d9d9d9;
+
+  --prose-fg: #e6e6e6;
+  --math-fg: #ededed;
+  --footer-link: #d4d4d4;
+
+  /* the wordmark PNG is white artwork; flip it on a light canvas */
+  --logo-filter: none;
+
   --page: 1440px;
   --gutter: 20px;
   --nav-h: 64px;
@@ -22,6 +44,32 @@
   --section-y: clamp(56px, 8vw, 104px);
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #ffffff;
+    --fg: #000000;
+    --muted: #5a5a5a;
+    --faint: #6f6f6f;
+    --line: rgba(0, 0, 0, 0.16);
+    --line-soft: rgba(0, 0, 0, 0.09);
+    --surface: #f7f7f7;
+    --surface-2: #eeeeee;
+
+    --header-bg: rgba(255, 255, 255, 0.72);
+    --hover-soft: rgba(0, 0, 0, 0.06);
+
+    --contrast-bg: #000000;
+    --contrast-fg: #ffffff;
+    --contrast-bg-hover: #2e2e2e;
+
+    --prose-fg: #1c1c1c;
+    --math-fg: #111111;
+    --footer-link: #3a3a3a;
+
+    --logo-filter: invert(1);
+  }
 }
 
 @media (min-width: 768px) {
@@ -40,7 +88,7 @@
 
 html {
   background: var(--bg);
-  color-scheme: dark;
+  color-scheme: light dark;
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
 }
@@ -81,10 +129,10 @@ button {
   cursor: pointer;
 }
 
-::selection { background: #ffffff; color: #000000; }
+::selection { background: var(--contrast-bg); color: var(--contrast-fg); }
 
 :focus-visible {
-  outline: 2px solid #ffffff;
+  outline: 2px solid var(--fg);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -107,8 +155,8 @@ button {
   z-index: 200;
   padding: 10px 16px;
   border-radius: 999px;
-  background: #fff;
-  color: #000;
+  background: var(--contrast-bg);
+  color: var(--contrast-fg);
   transform: translateY(-200%);
 }
 
@@ -208,7 +256,7 @@ h1, h2, h3, h4 {
 }
 
 .site-header.is-stuck {
-  background: rgba(0, 0, 0, 0.72);
+  background: var(--header-bg);
   backdrop-filter: saturate(160%) blur(14px);
   -webkit-backdrop-filter: saturate(160%) blur(14px);
 }
@@ -234,6 +282,7 @@ h1, h2, h3, h4 {
 .wordmark img {
   width: auto;
   height: 1.05em;
+  filter: var(--logo-filter);
 }
 
 .nav-links {
@@ -255,7 +304,7 @@ h1, h2, h3, h4 {
 .nav-links a:hover,
 .nav-links a[aria-current="page"] {
   color: var(--fg);
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--hover-soft);
 }
 
 .nav-actions {
@@ -271,7 +320,7 @@ h1, h2, h3, h4 {
   width: 40px;
   height: 40px;
   border-radius: 999px;
-  color: #ffffff;
+  color: var(--fg);
   transition: opacity 0.18s var(--ease), background 0.18s var(--ease);
 }
 
@@ -280,7 +329,7 @@ h1, h2, h3, h4 {
 .icon-btn svg {
   width: 21px;
   height: 21px;
-  stroke: #ffffff;
+  stroke: currentColor;
 }
 
 @media (min-width: 900px) {
@@ -295,7 +344,7 @@ h1, h2, h3, h4 {
   z-index: 150;
   display: grid;
   grid-template-rows: var(--nav-h) 1fr;
-  background: #000;
+  background: var(--bg);
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.22s var(--ease), visibility 0.22s var(--ease);
@@ -357,7 +406,7 @@ body.is-locked { overflow: hidden; }
   position: fixed;
   inset: 0;
   z-index: 160;
-  background: #000;
+  background: var(--bg);
   display: grid;
   grid-template-rows: auto 1fr;
   visibility: hidden;
@@ -453,11 +502,11 @@ body.is-locked { overflow: hidden; }
 .btn:active { transform: scale(0.985); }
 
 .btn--primary {
-  background: #ffffff;
-  color: #000000;
+  background: var(--contrast-bg);
+  color: var(--contrast-fg);
 }
 
-.btn--primary:hover { background: #d9d9d9; }
+.btn--primary:hover { background: var(--contrast-bg-hover); }
 
 .btn--ghost {
   border: 1px solid var(--line);
@@ -465,7 +514,7 @@ body.is-locked { overflow: hidden; }
 }
 
 .btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--hover-soft);
   border-color: transparent;
 }
 
@@ -842,7 +891,7 @@ a.panel:hover {
   font-size: 1rem;
   line-height: 1.65;
   letter-spacing: -0.011em;
-  color: #e6e6e6;
+  color: var(--prose-fg);
 }
 
 @media (min-width: 768px) {
@@ -899,7 +948,7 @@ a.panel:hover {
   position: relative;
   padding-left: 1.1em;
   margin-top: 0.5em;
-  color: #e6e6e6;
+  color: var(--prose-fg);
 }
 
 .prose .li::before {
@@ -1016,7 +1065,7 @@ pre.code {
 .footer-col a {
   font-size: 0.9375rem;
   letter-spacing: -0.008em;
-  color: #d4d4d4;
+  color: var(--footer-link);
   text-decoration: none;
 }
 
@@ -1088,7 +1137,7 @@ main { animation: page-in 0.36s var(--ease) both; }
   padding-block: 2px;
 }
 
-.katex { color: #ededed; }
+.katex { color: var(--math-fg); }
 
 .prose .math + p { margin-top: 1.6em; }
 
