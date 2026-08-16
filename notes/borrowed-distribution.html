@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="/assets/flits.css?v=13">
 <script src="/assets/theme-color.js?v=1"></script>
 <link rel="stylesheet" href="/assets/katex/katex.min.css">
+<link rel="stylesheet" href="/assets/chart.css?v=1">
 <link rel="icon" type="image/png" href="/assets/flits-logo-inverted.png">
 <link rel="icon" type="image/png" href="/assets/flits-logo-inverted.png" media="(prefers-color-scheme: light)">
 <link rel="icon" type="image/png" href="/assets/flits-logo.png" media="(prefers-color-scheme: dark)">
@@ -110,6 +111,189 @@
     <div class="math">$$P(\text{survive } t) \;=\; (1-q)^{t}$$</div>
     <p class="math-note">A small annual risk is not a small risk once it is compounded over a decade.</p>
     <p>The numbers are unkind. At a ten percent annual chance, a decade of dependence carries roughly a thirty-five percent chance of arriving intact. At twenty percent, which is not unrealistic for anything sitting close to a platform's own ambitions, it is about eleven. Nothing has to go badly wrong in a particular year for the tail to be thin. It just has to be possible every year.</p>
+    <figure class="chart">
+      <script type="application/json">
+      {
+        "title": "Chance a channel dependency survives intact",
+        "subtitle": "P(survive t) = (1 - q)^t, at three annual rates of disruption",
+        "x": {
+          "label": "Years of dependence",
+          "ticks": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ],
+          "format": "number"
+        },
+        "y": {
+          "min": 0,
+          "max": 1,
+          "ticks": [
+            0,
+            0.25,
+            0.5,
+            0.75,
+            1
+          ],
+          "format": "percent"
+        },
+        "series": [
+          {
+            "name": "q = 5%",
+            "points": [
+              [
+                0,
+                1.0
+              ],
+              [
+                1,
+                0.95
+              ],
+              [
+                2,
+                0.9025
+              ],
+              [
+                3,
+                0.8574
+              ],
+              [
+                4,
+                0.8145
+              ],
+              [
+                5,
+                0.7738
+              ],
+              [
+                6,
+                0.7351
+              ],
+              [
+                7,
+                0.6983
+              ],
+              [
+                8,
+                0.6634
+              ],
+              [
+                9,
+                0.6302
+              ],
+              [
+                10,
+                0.5987
+              ]
+            ]
+          },
+          {
+            "name": "q = 10%",
+            "points": [
+              [
+                0,
+                1.0
+              ],
+              [
+                1,
+                0.9
+              ],
+              [
+                2,
+                0.81
+              ],
+              [
+                3,
+                0.729
+              ],
+              [
+                4,
+                0.6561
+              ],
+              [
+                5,
+                0.5905
+              ],
+              [
+                6,
+                0.5314
+              ],
+              [
+                7,
+                0.4783
+              ],
+              [
+                8,
+                0.4305
+              ],
+              [
+                9,
+                0.3874
+              ],
+              [
+                10,
+                0.3487
+              ]
+            ]
+          },
+          {
+            "name": "q = 20%",
+            "points": [
+              [
+                0,
+                1.0
+              ],
+              [
+                1,
+                0.8
+              ],
+              [
+                2,
+                0.64
+              ],
+              [
+                3,
+                0.512
+              ],
+              [
+                4,
+                0.4096
+              ],
+              [
+                5,
+                0.3277
+              ],
+              [
+                6,
+                0.2621
+              ],
+              [
+                7,
+                0.2097
+              ],
+              [
+                8,
+                0.1678
+              ],
+              [
+                9,
+                0.1342
+              ],
+              [
+                10,
+                0.1074
+              ]
+            ]
+          }
+        ]
+      }
+      </script>
+      <figcaption>The curve is the whole argument. Nothing has to go badly wrong in any
+      particular year for the ten-year tail to be thin.</figcaption>
+    </figure>
     <p>Two things follow. The first is that channel risk is a property of duration, so it changes the kind of product worth building, not merely the marketing. A product that has to run for ten years to be worth building is a different bet than the same product with a payback measured in months. The second is that \(q\) is not fixed. It rises the closer you sit to whatever the platform intends to do itself, and falls the more boring and self-contained your product is. Being uninteresting to your landlord is a real form of insurance.</p>
 
     <h2>Rent paid in permission</h2>
@@ -203,5 +387,6 @@
 <script src="/assets/katex/katex.min.js" defer></script>
 <script src="/assets/katex/auto-render.min.js" defer></script>
 <script src="/assets/math.js?v=1" defer></script>
+<script src="/assets/chart.js?v=1" defer></script>
 </body>
 </html>

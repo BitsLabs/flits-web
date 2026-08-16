@@ -1,0 +1,210 @@
+/* Flits — line charts for notes
+   Loaded only by pages that contain a <figure class="chart">.
+
+   Series colours come from the validated categorical palette. Dark is the base
+   here, the same way flits.css treats the rest of the site, and the light steps
+   are swapped in under prefers-color-scheme: light. Both sets were validated
+   against this site's actual surfaces, pure black and pure white, rather than
+   the palette's default greys:
+
+     dark  on #000  worst adjacent CVD dE 8.4, normal-vision 19.8, contrast all >= 3:1
+     light on #fff  worst adjacent CVD dE 9.1, normal-vision 22.9, contrast WARN on
+                    aqua and yellow, which is why every series is directly labelled
+                    and every chart ships a table view. */
+
+:root {
+  --chart-1: #3987e5;
+  --chart-2: #d95926;
+  --chart-3: #199e70;
+  --chart-4: #c98500;
+  --chart-grid: rgba(255, 255, 255, 0.09);
+  --chart-axis: rgba(255, 255, 255, 0.22);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --chart-1: #2a78d6;
+    --chart-2: #eb6834;
+    --chart-3: #1baf7a;
+    --chart-4: #eda100;
+    --chart-grid: rgba(0, 0, 0, 0.08);
+    --chart-axis: rgba(0, 0, 0, 0.2);
+  }
+}
+
+.chart {
+  margin: 2.4em 0 0;
+  position: relative;
+}
+
+.chart__head { margin-bottom: 14px; }
+
+.chart__title {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  letter-spacing: -0.022em;
+  color: var(--fg);
+}
+
+.chart__subtitle {
+  margin-top: 2px;
+  font-size: 0.875rem;
+  color: var(--faint);
+}
+
+.chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* Recessive grid and axes: they orient, they do not compete with the lines. */
+.chart .grid line { stroke: var(--chart-grid); stroke-width: 1; }
+.chart .axis line { stroke: var(--chart-axis); stroke-width: 1; }
+
+.chart .tick {
+  font-size: 12px;
+  fill: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.chart .axis-label {
+  font-size: 12px;
+  fill: var(--faint);
+}
+
+/* Text never wears the series colour; the dot beside it carries identity. */
+.chart .end-label {
+  font-size: 12.5px;
+  fill: var(--muted);
+}
+
+.chart .end-value {
+  font-size: 12.5px;
+  fill: var(--fg);
+  font-variant-numeric: tabular-nums;
+}
+
+.chart .leader { stroke: var(--chart-axis); stroke-width: 1; fill: none; }
+
+.chart .line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+
+/* 2px surface ring so end dots stay legible where lines converge. */
+.chart .end-dot { stroke: var(--bg); stroke-width: 2; }
+
+.chart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 14px;
+}
+
+.chart__legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.chart__legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: currentColor;
+  flex: none;
+}
+
+.chart figcaption {
+  margin-top: 12px;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--faint);
+}
+
+/* ---- hover layer ---- */
+
+.chart .crosshair { stroke: var(--chart-axis); stroke-width: 1; }
+.chart .hover-dot { stroke: var(--bg); stroke-width: 2; }
+
+.chart__tip {
+  position: absolute;
+  z-index: 3;
+  min-width: 120px;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s var(--ease);
+}
+
+.chart__tip[data-open="true"] { opacity: 1; }
+
+.chart__tip dt {
+  color: var(--faint);
+  margin-bottom: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.chart__tip dd {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+}
+
+.chart__tip dd + dd { margin-top: 2px; }
+
+.chart__tip dd i {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: currentColor;
+  flex: none;
+}
+
+.chart__tip dd span { margin-left: auto; padding-left: 14px; }
+
+/* ---- table view ---- */
+
+.chart__table { margin-top: 14px; }
+
+.chart__table summary {
+  font-size: 0.8125rem;
+  color: var(--faint);
+  cursor: pointer;
+}
+
+.chart__table summary:hover { color: var(--fg); }
+
+.chart__table div {
+  overflow-x: auto;
+  margin-top: 12px;
+}
+
+.chart__table table {
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.chart__table th,
+.chart__table td {
+  padding: 6px 18px 6px 0;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.chart__table th { color: var(--faint); font-weight: 400; }
+.chart__table td { color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .chart__tip { transition: none; }
+}
