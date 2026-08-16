@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Borrowed Distribution · Flits</title>
-<meta name="description" content="Every consumer app is a tenant. What it costs to build on a channel somebody else owns, and why the rent is charged in years rather than percent.">
-<link rel="canonical" href="https://flits.cc/notes/borrowed-distribution">
-<meta property="og:title" content="Borrowed Distribution · Flits">
-<meta property="og:description" content="Every consumer app is a tenant. What it costs to build on a channel somebody else owns, and why the rent is charged in years rather than percent.">
-<meta property="og:url" content="https://flits.cc/notes/borrowed-distribution">
+<title>What Free Costs · Flits</title>
+<meta name="description" content="A free product still has a bill. Support and servers scale with installs while revenue per user stays at zero, so growth steepens the line instead of bending it.">
+<link rel="canonical" href="https://flits.cc/notes/what-free-costs">
+<meta property="og:title" content="What Free Costs · Flits">
+<meta property="og:description" content="A free product still has a bill. Support and servers scale with installs while revenue per user stays at zero, so growth steepens the line instead of bending it.">
+<meta property="og:url" content="https://flits.cc/notes/what-free-costs">
 <meta property="og:type" content="article">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -89,40 +89,44 @@
 
   <section class="page-hero wrap">
     <div class="page-hero__inner">
-      <p class="eyebrow"><strong>Note</strong> <span>November 2023</span></p>
-      <h1 class="h1">Borrowed Distribution</h1>
-      <p class="lede">Every consumer app is a tenant. What it costs to build on a channel somebody else owns, and why the rent is charged in years rather than percent.</p>
+      <p class="eyebrow"><strong>Note</strong> <span>July 2023</span></p>
+      <h1 class="h1">What Free Costs</h1>
+      <p class="lede">A free product still has a bill. Support and servers scale with installs while revenue per user stays at zero, so growth steepens the line instead of bending it.</p>
     </div>
   </section>
 
   <section class="wrap section--tight">
-    <div class="banner art--4 art--grain" role="img" aria-label="Abstract gradient"></div>
+    <div class="banner art--5 art--grain" role="img" aria-label="Abstract gradient"></div>
   </section>
 
   <div class="wrap">
-    <p class="article-meta"><span>Manuel Asbeck</span><span>November 2023</span></p>
+    <p class="article-meta"><span>Manuel Asbeck</span><span>July 2023</span></p>
   </div>
 
   <section class="wrap section--tight">
   <article class="prose">
-    <p>The first thing anyone notices about the App Store is the thirty percent. It is the wrong number to worry about. Thirty percent is a price, it is written down, and you can decide in advance whether the remaining seventy is a business. What is not written down anywhere is the rest of the arrangement: that the shelf, the search results, the payment relationship and the right to be installed at all belong to somebody else, and are lent to you on terms that can be rewritten without your agreement.</p>
-    <p>That is not a complaint. The alternative, building your own distribution from nothing, is so much more expensive that almost nobody starting out should choose it. It is simply worth being honest that what looks like owning a product is often renting a channel, and that the rent is not really charged as a percentage. It is charged in the probability that the terms change.</p>
+    <p>Free is chosen more often than it is decided. It is the default for a first app, it removes the most obvious reason someone will not try the thing, and it postpones an uncomfortable conversation about whether the work is worth money. All of that is real. What gets skipped is that free is a price, that it sets one side of the arithmetic to zero, and that the other side keeps running.</p>
+    <p>The bill arrives anyway. It is simply itemised somewhere other than the invoice: a support inbox, a server that has to stay up, an annual developer fee, and the hours that go into all three.</p>
 
-    <h2>What dependence actually costs</h2>
-    <p>Suppose in any given year there is some chance that the channel you depend on does something that materially hurts: a ranking change, a policy that outlaws a feature you built on, a review process that suddenly reads your category differently, a competing first-party app shipped in the operating system. Call that probability \(q\). The chance of getting through \(t\) years untouched is:</p>
-    <div class="math">$$P(\text{survive } t) \;=\; (1-q)^{t}$$</div>
-    <p class="math-note">A small annual risk is not a small risk once it is compounded over a decade.</p>
-    <p>The numbers are unkind. At a ten percent annual chance, a decade of dependence carries roughly a thirty-five percent chance of arriving intact. At twenty percent, which is not unrealistic for anything sitting close to a platform's own ambitions, it is about eleven. Nothing has to go badly wrong in a particular year for the tail to be thin. It just has to be possible every year.</p>
-    <p>Two things follow. The first is that channel risk is a property of duration, so it changes the kind of product worth building, not merely the marketing. A product that has to run for ten years to be worth building is a different bet than the same product with a payback measured in months. The second is that \(q\) is not fixed. It rises the closer you sit to whatever the platform intends to do itself, and falls the more boring and self-contained your product is. Being uninteresting to your landlord is a real form of insurance.</p>
+    <h2>The slope, not the level</h2>
+    <p>Take a product with \(u\) active users, some revenue \(r\) per user per month, some marginal cost \(c\) per user per month, and fixed costs \(f\) that exist whether anyone shows up or not. Monthly profit is:</p>
+    <div class="math">$$\Pi(u) \;=\; (r - c)\,u \;-\; f$$</div>
+    <p class="math-note">Growth helps only when the bracket is positive.</p>
+    <p>The bracket decides everything, and it decides it before the first user arrives. If \(r &gt; c\), scale is the answer to almost any problem: every new user pays for themselves and contributes toward \(f\), and the whole thing eventually crosses into profit on its own. If \(r &lt; c\), scale is the problem. Growth does not bend that line upward, it makes it steeper downward, and the more successful the product is the faster it gets there.</p>
+    <p>Free is the decision to set \(r = 0\). That does not make the bracket zero, it makes it \(-c\). Whatever \(c\) is, the product now loses that much per user per month, forever, and the reward for good marketing is a larger number.</p>
 
-    <h2>Rent paid in permission</h2>
-    <p>The part that costs most is rarely the money. It is that permission has to be asked for repeatedly, and the asking has a variance you do not control. A release can sit in review while a launch date passes. A feature can be approved for two years and then not. The correct response is not indignation, it is inventory: knowing which parts of your product exist at somebody else's discretion, and not letting that set grow quietly.</p>
-    <p>So we try to keep a small number of things ours regardless of what any platform decides. Whoever the customer is, and a way to reach them that does not route through a store. The domain, so that an address we have published for years keeps working. The data, in a form that can leave. A product built to run at <a href="/notes/what-free-costs">near-zero marginal cost</a> is easier to hold this way, because less of it was living on somebody else's machine to begin with. None of that produces growth on its own. All of it means a bad month is a bad month rather than the end.</p>
+    <h2>Support is the term that bites</h2>
+    <p>Servers are the cost people plan for and usually the smaller one. At a fraction of a cent per user per month, fifty thousand people cost less to host than a modest dinner. The term that actually scales is the human one.</p>
+    <p>Suppose one user in five hundred writes in during a given month, which is not pessimistic for a consumer app, and each message takes ten minutes to read, reproduce and answer properly. Fifty thousand active users is then a hundred messages a month, or about seventeen hours. That is half a working week, every month, arriving whether or not anything was earned, and it grows in exact proportion to how well the product is doing.</p>
+    <p>The uncomfortable part is that this cost cannot be refused without changing what the product is. Ignoring the inbox is a decision to ship something unsupported, and doing that at scale is how a free app becomes a slowly accumulating liability rather than a portfolio piece.</p>
 
-    <h2>The version of this I believe</h2>
-    <p>Borrowed distribution is worth borrowing. It is the reason one person can put something in front of millions of people without a sales team, and dismissing it as a trap is the kind of purity that produces no users at all. The mistake is not using the channel. The mistake is building as though the channel were an asset you hold rather than one you rent, and then being surprised when the terms change.</p>
-    <p>Practically, that means a few unexciting rules. Assume the channel changes at least once in any decade, and check that the product still means something if it does. Do not build a core mechanic on a permission that is granted by policy rather than by physics. Keep the direct relationship, even when it is smaller and slower than the borrowed one, because it is the part that survives.</p>
-    <p>The way to think about it is that distribution you borrow buys you time, and time is exactly the thing you should be spending on building something you own. Companies that forget the second half of that sentence do very well for a while, and then discover that everything they built was standing on ground rented by the year.</p>
+    <h2>Being free on purpose</h2>
+    <p>None of this is an argument against free. It is an argument for choosing which kind of free, of which there are only three honest versions.</p>
+    <p>The first is free as a funnel, where \(r\) is zero now and deliberately not later. That works, but only if the paid thing exists and the path to it is real rather than aspirational.</p>
+    <p>The second is free with someone else paying, through advertising or data. That sets \(r &gt; 0\) at the cost of building a product whose customer is not its user, which is a different company than the one we want to run.</p>
+    <p>The third is the one we keep choosing: free with \(c\) driven as close to zero as the product allows. No accounts, so there is nothing to reset. No server holding user data, so there is nothing to keep up and nothing to leak. Work that happens on the device, so the marginal cost of one more install is genuinely almost nothing. Then \(-c\) is small enough that scale is affordable, and a free product can sit in the portfolio for years without asking for anything.</p>
+    <p>That constraint shapes the software more than any design decision. A product that must run at near-zero marginal cost cannot have a sync service, cannot have a feed, cannot have anything that phones home constantly. It has to be self-contained, which happens to also make it faster, more private and cheaper to keep alive.</p>
+    <p>So the question to answer before choosing free is not whether people will pay. It is what \(c\) is, honestly, including the hours. If it is small, free is a real option and possibly a permanent one. If it is not, then free is not a price at all, it is a deficit with a growth strategy attached, and the only fix arrives much later and costs much more than charging would have at the start.</p>
   </article>
   </section>
 
@@ -132,18 +136,18 @@
       <a class="view-all" href="/notes">View all</a>
     </div>
     <div class="rail" style="--cols: 3;">
+      <a class="card" href="/notes/borrowed-distribution">
+        <div class="card__media"><span class="art art--4 art--grain"></span></div>
+        <div class="card__body">
+          <h3 class="card__title">Borrowed Distribution</h3>
+          <p class="card__meta"><span>Note</span><span>November 2023</span></p>
+        </div>
+      </a>
       <a class="card" href="/notes/the-price-of-a-promise">
         <div class="card__media"><span class="art art--6 art--grain"></span></div>
         <div class="card__body">
           <h3 class="card__title">The Price of a Promise</h3>
           <p class="card__meta"><span>Note</span><span>September 2024</span></p>
-        </div>
-      </a>
-      <a class="card" href="/notes/founding-flits">
-        <div class="card__media"><span class="art art--2 art--grain"></span></div>
-        <div class="card__body">
-          <h3 class="card__title">Founding Flits</h3>
-          <p class="card__meta"><span>Note</span><span>June 2025</span></p>
         </div>
       </a>
       <a class="card" href="/#portfolio">
