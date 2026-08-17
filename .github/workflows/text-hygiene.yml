@@ -1,0 +1,37 @@
+name: Text hygiene
+
+# Fails a push that introduces invisible characters (zero-width spaces, byte
+# order marks, bidi controls, Unicode tag characters) anywhere, or an em or en
+# dash in copy. Invisible characters cannot be caught in review because nobody
+# can see them, so the check has to be mechanical.
+
+on:
+  push:
+    branches: ['**']
+    paths:
+      - '**.html'
+      - '**.css'
+      - '**.js'
+      - '**.mjs'
+      - '**.md'
+      - 'scripts/check-text.mjs'
+      - '.github/workflows/text-hygiene.yml'
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: text-hygiene-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Check for invisible and out-of-style characters
+        run: node scripts/check-text.mjs
